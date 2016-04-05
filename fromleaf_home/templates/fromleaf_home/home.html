@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>This is My Homepage</h2>
+	<ul>
+		{% for app_name in object_list %}
+			{% with app_name|add:":"|add:"index" as url_var %}
+			<li><a href="{% url url_var %}">{{ app_name }}</a></li>
+			{% endwith %}
+		{% endfor %}
+	</ul>
+
+{% endblock content %}

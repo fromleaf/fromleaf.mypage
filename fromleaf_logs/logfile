@@ -1,0 +1,4 @@
+[25/Mar/2016 21:11:53] DEBUG [darly.models:21] str_get_upload_to: <function get_upload_to at 0x1100a3598>
+[25/Mar/2016 21:12:34] DEBUG [darly.models:21] str_get_upload_to: <function get_upload_to at 0x107c58598>
+[25/Mar/2016 21:13:21] DEBUG [darly.models:21] str_get_upload_to: <function get_upload_to at 0x107285598>
+[25/Mar/2016 21:14:15] DEBUG [darly.models:21] str_get_upload_to: '<function get_upload_to at 0x10fff3598>'

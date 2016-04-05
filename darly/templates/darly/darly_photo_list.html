@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block blog-main %}
+
+<h1>Darly Photos</h1>
+
+{% if error_message %}
+	<ul>
+	<li>{{error_message}}</li>
+	</ul>
+{% endif %}
+
+{% if darly_photo_list %}
+	{% for darly_photo in darly_photo_list %}
+		<img src="{{ darly_photo.photo.url }}" alt="..." class="img-thumbnail">
+	{% empty %}
+		<li>Sorry, no Darly Photos in this list.</li></br>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No players are available.</p>
+{% endif %}
+
+{% endblock blog-main %}
