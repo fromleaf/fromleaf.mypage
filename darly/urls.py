@@ -21,6 +21,3 @@ from darly import views
 urlpatterns = [
     url(r'^$', views.DarlyPhotoListView.as_view(), name='darly_photo_view_page'),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(r'^(?P<path>.*)$', document_root=settings.MEDIA_ROOT)
