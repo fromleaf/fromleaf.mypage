@@ -1,6 +1,5 @@
 import os.path
 
-from django.conf import settings
 from django.db import models
 from unidecode import unidecode
 
@@ -14,6 +13,12 @@ class MemberInfo(models.Model):
     def __init__(self, *args, **kwargs):
         super(MemberInfo, self).__init__(*args, **kwargs)
 
+    def set_member_info(self, **kwargs):
+        self.email = kwargs['email']
+        self.password = kwargs['password']
+        self.grade = kwargs['grade']
+        self.user_info = kwargs['user_info']
+    
     def __unicode__(self):  # __str__ on Python3
         return self.email    
     
@@ -36,8 +41,8 @@ class MemberInfo(models.Model):
                              choices=MEMBER_CHOICES,
                              default=MEMBER
                              )
-    user = models.OneToOneField(
-                              'User',
+    user_info = models.OneToOneField(
+                              'UserInfo',
                               on_delete=models.CASCADE,
                               )
     
@@ -46,8 +51,16 @@ class ExtraUserInfo(models.Model):
     def __init__(self, *args, **kwargs):
         super(ExtraUserInfo, self).__init__(*args, **kwargs)
         
+    def set_extra_user_info(self, **kwargs):
+        self.address = kwargs['address']
+        self.phone_number = kwargs['phone_number']
+        self.cellphone_number = kwargs['phone_number']
+        self.profile_image = kwargs['profile_image']
+        self.blog_address = kwargs['blog_address']
+        self.user_info = kwargs['user_info']
+        
     def get_upload_to(self, filename):
-        folder_name = 'photos/profile'
+        folder_name = 'photos/profile/'
         filename = self.profile_image.field.storage.get_valid_name(filename)
 
         # do a unidecode in the filename and then
@@ -68,16 +81,36 @@ class ExtraUserInfo(models.Model):
     profile_image = models.ImageField(upload_to=get_upload_to)
     blog_address = models.URLField(max_length=200)
     
+    user_info = models.OneToOneField(
+                              'UserInfo',
+                              on_delete=models.CASCADE,
+                              )
     
-    user = models.OneToOneField(
-                              'User',
+
+class UserSNSInfo(models.Model):
+    def __init__(self, *args, **kwargs):
+        super(UserSNSInfo, self).__init__(*args, **kwargs) 
+        
+    github_id = models.CharField(max_length=200)
+    github_address = models.URLField(max_length=200)
+    facebook_id = models.CharField(max_length=200)
+    facebook_address = models.URLField(max_length=200)
+    linkedin_id = models.CharField(max_length=200)
+    linkedin_address = models.URLField(max_length=200)
+    
+    extra_user_info = models.OneToOneField(
+                              'ExtraUserInfo',
                               on_delete=models.CASCADE,
                               )
     
     
-class User(models.Model):
+class UserInfo(models.Model):
     def __init__(self, *args, **kwargs):
-        super(User, self).__init__(*args, **kwargs)
+        super(UserInfo, self).__init__(*args, **kwargs)
+        
+    def set_user(self, **kwargs):
+        self.name = kwargs['name']
+        self.birthday = kwargs['birthday']
     
     def __unicode__(self):  # __str__ on Python3
         return self.name  

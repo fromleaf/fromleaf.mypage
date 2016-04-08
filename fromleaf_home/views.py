@@ -9,5 +9,4 @@ class HomeView(TemplateView):
         return context
 
     template_name = 'fromleaf_home/home.html'
-
-   
+    

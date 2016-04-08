@@ -30,9 +30,13 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 ]
 
+
+# TODO: 개발용인데, STATIC 경로가 있어야 하나? Azure에서 없으면 못읽으려나??
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # While I'm developing my site, Media files are saved on "/app_name/media/location".  
+    # If I want to laod my media files, I have to use this code.
     urlpatterns += static(r'^(?P<path>.*)$', document_root=settings.MEDIA_ROOT)
 
 

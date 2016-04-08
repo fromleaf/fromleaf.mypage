@@ -1,3 +1,20 @@
 from django.db import models
 
-# Create your models here.
+from fromleaf_common.models.page import PageContainer
+
+class StudyingPage(models.Model):
+    
+    def __init__(self, *args, **kwargs):
+        super(StudyingPage, self).__init__(*args, **kwargs)
+
+    def __unicode__(self):  # __str__ on Python3
+        return self.page_name 
+    
+    page_name = 'StudyingPage'
+    page_describe = 'this page is Studying page.'    
+    page_container = models.OneToOneField(
+                              PageContainer,
+                              on_delete=models.CASCADE,
+                              )
+    
+    created_at = models.DateTimeField(auto_now_add=True)

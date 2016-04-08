@@ -16,10 +16,7 @@ class SimpleComment(models.Model):
     comment = models.TextField(help_text='Input Comment')
     created_at = models.DateTimeField(auto_now_add=True)
     
-    aboutme_comment = models.ForeignKey(
+    aboutme_page = models.ForeignKey(
                                 AboutMePage,  
                                 on_delete=models.CASCADE,
                             )
-    
-    
-    

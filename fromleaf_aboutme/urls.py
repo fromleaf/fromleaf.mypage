@@ -21,8 +21,3 @@ from fromleaf_aboutme import views
 urlpatterns = [
     url(r'^$', views.AboutMeView.as_view(), name='aboutme_page'),
 ]
-
-# While I'm developing my site, Media files are saved on "/app_name/media/location".  
-# If I want to laod my media files, I have to use this code.
-if settings.DEBUG:
-    urlpatterns += static(r'^(?P<path>.*)$', document_root=settings.MEDIA_ROOT)

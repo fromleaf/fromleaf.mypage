@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from fromleaf_common.models.comment import SimpleComment
-from fromleaf_common.models.page import PageData
+from fromleaf_common.models.page import PageContainer
 from fromleaf_aboutme.models import AboutMePage 
 
 
