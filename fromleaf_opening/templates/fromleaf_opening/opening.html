@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 <head>
-    <title>{% block title %}About Me | NOT IMPORTANT {% endblock title %}</title>
+    <title>{% block title %}Opening Page{% endblock title %}</title>
 </head>
 
 {% block blog-main %}
@@ -14,19 +14,32 @@
 </div>
 
 
-{% autoescape off %}
+
 <div class="blog-post">
-	<h2 class="blog-post-title">{{ site_user_info.name }}'s Blog</h2>	
+	<h2 class="blog-post-title">Welcome {{ site_user_info.name }}'s Blog</h2>	
 	<div class="row featurette">
-        <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
-          <p class="lead">{{ page_info.page_describe }}</p>
+		<div class="col-md-4 col-md-offset-0">
+			<img class="img-thumbnail img-responsive center-block" data-src="holder.js/200x200/auto" 
+				src="{{ site_user_extra_info.profile_image.url }}" alt="Generic placeholder image">
         </div>
-        <div class="col-md-5 col-md-pull-7">
-          <img class="featurette-image img-responsive center-block" data-src="holder.js/200x200/auto" src="{{ site_user_extra_info.profile_image.url }}" alt="Generic placeholder image">
+        <div class="col-md-8 col-md-offset-0">
+        <h4 class="featurette-heading">
+        	<span class="text-muted">
+        	{% for sentence in opening_headding %}
+        		{{ sentence }}<p>
+        	{% endfor %}
+        	</span>
+        </h4>
+	        <p>{{ opening_page_info.main_describe_1 }}</p>
+	            <ul>
+	              <li>Language: {{ opening_page_info.language }}</li>
+	              <li>Framework: {{ opening_page_info.framework }}</li>
+	              <li>Database: {{ opening_page_info.database }}</li>
+	              <li>Cloud Server: {{ opening_page_info.cloud_server }}</li>
+	            </ul>
+	        <p>{{ opening_page_info.describe_1 }} <a href="{{ opening_page_info.github_address }}" target="_blank">{{ opening_page_info.github_address }}</a> {{ opening_page_info.describe_2 }}</p>
         </div>
     </div>
 </div><!-- /.blog-post -->
-{% endautoescape %}
 
 {% endblock blog-main %}

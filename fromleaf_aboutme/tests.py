@@ -16,16 +16,11 @@ class AboutMePageTestCase(TestCase):
                                             )                                      
          
         test_simple_comment_0 = SimpleComment.objects.create(
-                                    title='test_simple_comment_0',
-                                    comment= 'Today is Eddie’s eighth birthday, but he is not happy. '
-                                        + 'He had hoped to show his truck to his friends at a birthday party. '
-                                        + 'Instead, his family have to go someplace and get dressed up. '
-                                        + 'Even he is wearing Joe’s old shoes. They go to attend the funeral. '
-                                        + 'Eddie watches a man shovel dirt into a hole. The story is back again, '
-                                        + 'Eddie and the Blue man are in the Ruby Pier in the heaven. '
-                                        + 'Eddie got a shock because he didn’t know about the accident. '
-                                        + 'However, Eddie thought he paid for his sin because he was in the Blue man’s heaven, '
-                                        + 'but The Blue man said that he would teach about there are no random acts to him.',
+                                    title='좋아하는 걸 하려합니다.',
+                                    comment= '안녕하세요. 지금 Python을 공부하고 있으며, 이 언어를 이용한 Django Framework를 이용해 웹 개발을 공부하고 있습니다. '
+                                            + '3년 정도 C를 이용한 임베디드 소프트웨어 개발에 참여했으며, 그 전에는 짧지만 Java를 기반으로한 웹 개발에도 참여했습니다.'
+                                            + '개발 외에는 책 읽기와 운동 하는 것을 좋아합니다. 책을 읽는 동안은 잠시 조용할 수 있어서 좋아하고, '
+                                            + '운동은 땀 흘린 뒤의 상쾌함을 좋아합니다.',
                                     aboutme_page=test_aboutme_page
                                 )
         test_simple_comment_1 = SimpleComment.objects.create(
@@ -35,10 +30,7 @@ class AboutMePageTestCase(TestCase):
                                         + 'Instead, his family have to go someplace and get dressed up. '
                                         + 'Even he is wearing Joe’s old shoes. They go to attend the funeral. '
                                         + 'Eddie watches a man shovel dirt into a hole. The story is back again, '
-                                        + 'Eddie and the Blue man are in the Ruby Pier in the heaven. '
-                                        + 'Eddie got a shock because he didn’t know about the accident. '
-                                        + 'However, Eddie thought he paid for his sin because he was in the Blue man’s heaven, '
-                                        + 'but The Blue man said that he would teach about there are no random acts to him.',
+                                        + 'Eddie and the Blue man are in the Ruby Pier in the heaven. ',
                                     aboutme_page=test_aboutme_page
                                 )
         
@@ -49,10 +41,7 @@ class AboutMePageTestCase(TestCase):
                                         + 'Instead, his family have to go someplace and get dressed up. '
                                         + 'Even he is wearing Joe’s old shoes. They go to attend the funeral. '
                                         + 'Eddie watches a man shovel dirt into a hole. The story is back again, '
-                                        + 'Eddie and the Blue man are in the Ruby Pier in the heaven. '
-                                        + 'Eddie got a shock because he didn’t know about the accident. '
-                                        + 'However, Eddie thought he paid for his sin because he was in the Blue man’s heaven, '
-                                        + 'but The Blue man said that he would teach about there are no random acts to him.',
+                                        + 'Eddie and the Blue man are in the Ruby Pier in the heaven. ',
                                     aboutme_page=test_aboutme_page
                                 )                                         
         

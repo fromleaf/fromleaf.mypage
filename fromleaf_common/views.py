@@ -17,13 +17,14 @@ class TemplateCommonView(TemplateView):
         user_extra_info = db.get_current_user_extra_info(user_member_info)
         user_sns_info = db.get_current_user_sns_info(user_member_info)
         # FIXME: 이건 계속 쓰일지 모르겠지만 TEST용으로 사용하는 겁니다.
-        simple_comment_list = db.get_simple_comment_list(self, user_member_info)
+        comment_list = db.get_comment_list_for_sidebar(user_member_info)
 
+        context['meta_user_info'] = user_info
         context['sidebar_user_info'] = user_info
-        context['sidebar_user_introduce_comment'] = simple_comment_list[0]
+        context['sidebar_user_introduce_comment'] = comment_list[0]
         context['sidebar_user_extra_info'] = user_extra_info
         context['sidebar_user_sns_info'] = user_sns_info
-        context['latest_article_list'] = simple_comment_list[:2]
+        context['latest_article_list'] = comment_list[:2]
         context['footer_user_info'] = user_member_info
         
         return context

@@ -12,7 +12,7 @@ class OpeningPage(models.Model):
         return self.page_name 
     
     page_name = 'OpeningPage'
-    page_describe = 'this page is Opening page.'    
+    page_describe = 'This page is Opening page.'    
     page_container = models.OneToOneField(
                               PageContainer,
                               on_delete=models.CASCADE,

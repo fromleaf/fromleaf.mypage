@@ -5,10 +5,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="{{ page_info.page_describe }}">
+    <meta name="author" content="{{ meta_user_info.name }}">
     
-    <title>{% block title %}My Home Page{% endblock title %}</title>
+    <title>{% block title %}MY PAGE{% endblock title %}</title>
 
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
@@ -47,24 +47,24 @@
 		</nav>
 	    {% endblock main_menu_bar %}
 	</div>
-	
+	<!-- 
 	<div class="blog-header">
         <p class="lead blog-description">{{ page_info.page_name }}: {{ page_info.page_describe }}</p>
 	</div>
-	
+	 -->
+	{% autoescape on %}
 	<div class="row">
-		
-		<div class="col-md-10 col-md-offset-0 blog-main">
+		<div class="blog-main col-md-9">
 			{% block blog-main %}
 			{% endblock blog-main %}
 		</div><!-- /.blog-main -->
 		
 		
-		<div class="col-md-2 blog-sidebar">
+		<div class="col-md-offset-10 blog-sidebar">
 			{% block sidebar %}
 			<div class="sidebar-module sidebar-module-inset">
 				<h4>About</h4>
-				<p>{{ sidebar_user_info.name }}<em>{{ sidebar_user_introduce_comment.comment }}</em></p>
+				<p>{{ sidebar_user_introduce_comment.title }}<p><em>{{ sidebar_user_introduce_comment.comment }}</em></p></p>
 			</div>
 			<div class="sidebar-module">
 				<h4>Archives</h4>
@@ -91,21 +91,25 @@
 			<div class="sidebar-module">
 				<h4>Elsewhere</h4>
 				<ol class="list-unstyled">
-					<li><a href="{{ sidebar_user_sns_info.github_address }}">Github: {{ sidebar_user_sns_info.github_id }}</a></li>
-					<li><a href="{{ sidebar_user_sns_info.facebook_address }}">Facebook: {{ sidebar_user_sns_info.facebook_id }}</a></li>
-					<li><a href="{{ sidebar_user_sns_info.linkedin_address }}">Linkedin: {{ sidebar_user_sns_info.linkedin_id }}</a></li>
-					<li><a href="{{ sidebar_user_extra_info.blog_address }}">Blog: {{ sidebar_user_extra_info.blog_address }}</a></li>
+					<li><a href="{{ sidebar_user_sns_info.github_address }}{{ sidebar_user_sns_info.github_id }}" 
+						target="_blank">Github: {{ sidebar_user_sns_info.github_id }}</a></li>
+					<li><a href="{{ sidebar_user_sns_info.facebook_address }}{{ sidebar_user_sns_info.facebook_id }}" 
+						target="_blank">Facebook: {{ sidebar_user_sns_info.facebook_id }}</a></li>
+					<li><a href="{{ sidebar_user_sns_info.linkedin_address }}{{ sidebar_user_sns_info.linkedin_id }}" 
+						target="_blank">Linkedin: {{ sidebar_user_sns_info.linkedin_id }}</a></li>
+					<li><a href="{{ sidebar_user_extra_info.blog_address }}" 
+						target="_blank">Blog: {{ sidebar_user_extra_info.blog_address }}</a></li>
 				</ol>
 			</div>
 			{% endblock sidebar %}
 		</div><!-- /.blog-sidebar -->
 	
 	</div><!-- /.row -->
-
+	{% endautoescape %}
 </div><!-- /.container -->
 
 <footer class="col-md-2 col-md-offset-6 footer">
-	<p class="text-muted">Created by yoon(<a href="{{ footer_user_info.email }}">{{ footer_user_info.email }}</a>).</p>
+	<p class="text-muted">Created by yoon(<a href="mailto:{{ footer_user_info.email }}">{{ footer_user_info.email }}</a>).</p>
 </footer><!-- /.footer -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

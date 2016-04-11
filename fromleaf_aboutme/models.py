@@ -12,7 +12,7 @@ class AboutMePage(models.Model):
         return self.page_name 
     
     page_name = 'AboutMePage'
-    page_describe = 'this page is About Me page.'    
+    page_describe = 'This page is About Me page.'    
     page_container = models.OneToOneField(
                               PageContainer,
                               on_delete=models.CASCADE,

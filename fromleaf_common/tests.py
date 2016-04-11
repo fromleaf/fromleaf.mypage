@@ -25,11 +25,11 @@ class UserTestCase(TestCase):
                                                 )
         test_user_sns_info = UserSNSInfo.objects.create(
                                                     github_id= 'fromleaf',
-                                                    github_address= 'http://www.github.com',
+                                                    github_address= 'http://www.github.com/',
                                                     facebook_id= 'fromleaf',
-                                                    facebook_address= 'http://www.facebook.com',
+                                                    facebook_address= 'http://www.facebook.com/',
                                                     linkedin_id= 'fromleaf',
-                                                    linkedin_address= 'http://www.linkedin.com',
+                                                    linkedin_address= 'http://www.linkedin.com/in/',
                                                     extra_user_info = test_extra_user_info
                                                 )
         

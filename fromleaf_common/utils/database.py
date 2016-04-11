@@ -64,3 +64,13 @@ def get_simple_comment_list(view_class, user_member_info):
         simple_comment_list = [""];
     
     return simple_comment_list
+
+
+def get_comment_list_for_sidebar(user_member_info):
+    current_user_info= get_current_user_info(user_member_info)
+    current_page_container = get_object_or_404(PageContainer, user_info=current_user_info)
+    
+    current_aboutme_page = AboutMePage.objects.filter(page_container=current_page_container)
+    comment_list = SimpleComment.objects.filter(aboutme_page=current_aboutme_page)
+    
+    return comment_list

@@ -14,16 +14,16 @@ class OpeningPageTestCase(TestCase):
                                                 page_container=PageContainer.objects.get(user_info=test_member_info.user_info)
                                             )
         test_opening_page_comment_01 = SimpleComment.objects.create(
-                                    title='test_opening_page_comment_01',
-                                    comment= 'Today is Eddie’s eighth birthday, but he is not happy. '
-                                        + 'He had hoped to show his truck to his friends at a birthday party. '
-                                        + 'Instead, his family have to go someplace and get dressed up. '
-                                        + 'Even he is wearing Joe’s old shoes. They go to attend the funeral. '
-                                        + 'Eddie watches a man shovel dirt into a hole. The story is back again, '
-                                        + 'Eddie and the Blue man are in the Ruby Pier in the heaven. '
-                                        + 'Eddie got a shock because he didn’t know about the accident. '
-                                        + 'However, Eddie thought he paid for his sin because he was in the Blue man’s heaven, '
-                                        + 'but The Blue man said that he would teach about there are no random acts to him.',
+                                    title='제 Portfolio 를 위한 사이트입니다. 궁금하신 사항은 제 메일주소로 연락주세요.',
+                                    comment= 'title:Development Environment,'
+                                        + 'main_describe_1:이 사이트 개발환경 입니다.,'
+                                        + 'language:Python 3.4.1,'
+                                        + 'framework:Django 1.9.5,'
+                                        + 'database:SQLite,'
+                                        + 'cloud_server:Azure - Web Apps(PTVS),'
+                                        + 'describe_1:이 사이트의 코드는,'
+                                        + 'describe_2:공개되어 있습니다.,'
+                                        + 'github_address:https://github.com/fromleaf/fromleaf.mypage',
                                     opening_page=test_opening_page
                                 )
         
