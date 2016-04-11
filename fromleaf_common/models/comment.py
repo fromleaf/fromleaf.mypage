@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 
+from fromleaf_opening.models import OpeningPage
 from fromleaf_aboutme.models import AboutMePage
 
 
@@ -12,11 +13,17 @@ class SimpleComment(models.Model):
     def __unicode__(self):  # __str__ on Python3
         return self.title
     
-    title = models.CharField(max_length=200, )
+    title = models.CharField(max_length=200)
     comment = models.TextField(help_text='Input Comment')
     created_at = models.DateTimeField(auto_now_add=True)
     
+    opening_page = models.ForeignKey(
+                                OpeningPage,  
+                                on_delete=models.CASCADE,
+                                null=True
+                            )
     aboutme_page = models.ForeignKey(
                                 AboutMePage,  
                                 on_delete=models.CASCADE,
+                                null=True
                             )

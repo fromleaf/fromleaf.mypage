@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'fromleaf_common',
-    'fromleaf_home',
+    'fromleaf_opening',
     'fromleaf_aboutme',
     'fromleaf_portfolio',
     'fromleaf_studying',
@@ -154,11 +154,11 @@ LOGGING = {
         },
     },
     'loggers': {
-        'fromleaf_*': {
+        'darly': {
             'handlers': ['file'],
             'level': 'DEBUG',
         },
-        'darly': {
+        'fromleaf_common': {
             'handlers': ['file'],
             'level': 'DEBUG',
         },

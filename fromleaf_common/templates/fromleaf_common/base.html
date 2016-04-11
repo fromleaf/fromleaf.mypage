@@ -54,21 +54,24 @@
 	
 	<div class="row">
 		
-		<div class="col-md-8 col-md-offset-1 blog-main">
+		<div class="col-md-10 col-md-offset-0 blog-main">
 			{% block blog-main %}
 			{% endblock blog-main %}
 		</div><!-- /.blog-main -->
 		
 		
 		<div class="col-md-2 blog-sidebar">
-			{% block search-sidebar %}
+			{% block sidebar %}
 			<div class="sidebar-module sidebar-module-inset">
 				<h4>About</h4>
-				<p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+				<p>{{ sidebar_user_info.name }}<em>{{ sidebar_user_introduce_comment.comment }}</em></p>
 			</div>
 			<div class="sidebar-module">
 				<h4>Archives</h4>
 				<ol class="list-unstyled">
+				{% for article in latest_article_list %}
+				<li><a href="#">{{ article.title }} ({{ article.created_at }})</a></li>
+				<!-- 나중에 포멧을 참고하기 위해 남겨둔다. 
 					<li><a href="#">March 2014</a></li>
 					<li><a href="#">February 2014</a></li>
 					<li><a href="#">January 2014</a></li>
@@ -81,17 +84,20 @@
 					<li><a href="#">June 2013</a></li>
 					<li><a href="#">May 2013</a></li>
 					<li><a href="#">April 2013</a></li>
+				-->
+				{% endfor %}
 				</ol>
 			</div>
 			<div class="sidebar-module">
 				<h4>Elsewhere</h4>
 				<ol class="list-unstyled">
-					<li><a href="#">GitHub</a></li>
-					<li><a href="#">Twitter</a></li>
-					<li><a href="#">Facebook</a></li>
+					<li><a href="{{ sidebar_user_sns_info.github_address }}">Github: {{ sidebar_user_sns_info.github_id }}</a></li>
+					<li><a href="{{ sidebar_user_sns_info.facebook_address }}">Facebook: {{ sidebar_user_sns_info.facebook_id }}</a></li>
+					<li><a href="{{ sidebar_user_sns_info.linkedin_address }}">Linkedin: {{ sidebar_user_sns_info.linkedin_id }}</a></li>
+					<li><a href="{{ sidebar_user_extra_info.blog_address }}">Blog: {{ sidebar_user_extra_info.blog_address }}</a></li>
 				</ol>
 			</div>
-			{% endblock search-sidebar %}
+			{% endblock sidebar %}
 		</div><!-- /.blog-sidebar -->
 	
 	</div><!-- /.row -->
@@ -99,7 +105,7 @@
 </div><!-- /.container -->
 
 <footer class="col-md-2 col-md-offset-6 footer">
-	<p class="text-muted">Created by yoon(<a href="fromleaf@gmail.com">fromleaf@gmail.com</a>).</p>
+	<p class="text-muted">Created by yoon(<a href="{{ footer_user_info.email }}">{{ footer_user_info.email }}</a>).</p>
 </footer><!-- /.footer -->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

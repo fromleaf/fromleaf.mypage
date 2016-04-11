@@ -17,8 +17,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import patterns, url
 
-from fromleaf_aboutme import views
+from fromleaf_opening import views
 
 urlpatterns = [
-    url(r'^$', views.AboutMeView.as_view(), name='aboutme_page'),
+    url(r'^$', views.OpeningView.as_view(), name='opening_page'),
 ]

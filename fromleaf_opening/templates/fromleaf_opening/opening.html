@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+<head>
+    <title>{% block title %}About Me | NOT IMPORTANT {% endblock title %}</title>
+</head>
+
+{% block blog-main %}
+<div class="error_message">
+	{% if error_message %}
+		<ul>
+		<li>{{error_message}}</li>
+		</ul>
+	{% endif %}
+</div>
+
+
+{% autoescape off %}
+<div class="blog-post">
+	<h2 class="blog-post-title">{{ site_user_info.name }}'s Blog</h2>	
+	<div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+          <h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+          <p class="lead">{{ page_info.page_describe }}</p>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+          <img class="featurette-image img-responsive center-block" data-src="holder.js/200x200/auto" src="{{ site_user_extra_info.profile_image.url }}" alt="Generic placeholder image">
+        </div>
+    </div>
+</div><!-- /.blog-post -->
+{% endautoescape %}
+
+{% endblock blog-main %}

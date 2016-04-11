@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from fromleaf_common.models.comment import SimpleComment
 from fromleaf_common.models.page import PageContainer
-from fromleaf_aboutme.models import AboutMePage 
+from fromleaf_opening.models import OpeningPage 
 
 
 class SimpleCommentInline(admin.TabularInline):
@@ -12,10 +12,10 @@ class SimpleCommentInline(admin.TabularInline):
     max_num = extra 
         
             
-class AboutMeAdmin(admin.ModelAdmin):
+class OpeningAdmin(admin.ModelAdmin):
     list_display = ['id', 'page_name', 'page_describe', 'created_at']
     inlines = [SimpleCommentInline]
     
-admin.site.register(AboutMePage, AboutMeAdmin)
+admin.site.register(OpeningPage, OpeningAdmin)
 # TODO: After finished development, below code have to be delete.
 # admin.site.register(SimpleComment)

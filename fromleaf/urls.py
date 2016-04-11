@@ -18,10 +18,9 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from fromleaf_home.views import HomeView
 
 urlpatterns = [
-    url(r'^$', HomeView.as_view(), name='home'),
+    url(r'^', include('fromleaf_opening.urls', namespace='opening')),
     url(r'^aboutme/', include('fromleaf_aboutme.urls', namespace='aboutme')),
 #     url(r'^$', SkillsView.as_view(), name='skills'),
 #     url(r'^$', PortfolioView.as_view(), name='portfolio'),
