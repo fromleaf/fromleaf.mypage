@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+<head>
+    <title>{% block title %}My Skill {% endblock title %}</title>
+</head>
+
+
+{% block blog-main %}
+<div class="error_message">
+	{% if error_message %}
+		<ul>
+		<li>{{error_message}}</li>
+		</ul>
+	{% endif %}
+</div>
+
+
+<div class="blog-post">
+	<div class="col-md-15">
+		<div class="jumbotron">
+        	<h1>Hello, world!</h1>
+            	<p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap. Try some responsive-range viewport sizes to see it in action.</p>
+        </div><!--/.jumbotron -->
+        <div class="col-md-10">
+          	{% if development_skill_list %}
+          		<h3>Development Skill</h3>
+          		{% for skill in development_skill_list %}
+          		<div class="col-md-4">
+	          		<h3>{{ skill.name }}</h3>
+	            	<p>Kind: {{ skill.kind }}</p>
+					<p>Level: {{ skill.level }}</p>
+					<p>{{ skill.describe }}</p>
+				</div>	
+          		{% endfor %}
+          	{% endif %}
+		</div>
+		<div class="col-md-10">
+          	{% if cooperation_skill_list %}
+          		<h3>Cooperation Skill</h3>
+          		{% for skill in cooperation_skill_list %}
+          		<div class="col-md-4">
+	          		<h3>{{ skill.name }}</h3>
+	            	<p>Kind: {{ skill.kind }}</p>
+					<p>Level: {{ skill.level }}</p>
+					<p>{{ skill.describe }}</p>
+				</div>	
+          		{% endfor %}
+          	{% endif %}
+         </div>
+         <div class="col-md-10">	
+          	{% if os_skill_list %}
+          		<h3>OS Skill</h3>
+          		{% for skill in os_skill_list %}
+          		<div class="col-md-4">
+	          		<h3>{{ skill.name }}</h3>
+	            	<p>Kind: {{ skill.kind }}</p>
+					<p>Level: {{ skill.level }}</p>
+					<p>{{ skill.describe }}</p>
+				</div>	
+          		{% endfor %}
+          	{% endif %}
+          </div>
+          <div class="col-md-10">
+          	{% if personality_skill_list %}
+          		<h3>Personality Skill</h3>
+          		{% for skill in personality_skill_list %}
+          		<div class="col-md-4">
+	          		<h3>{{ skill.name }}</h3>
+	            	<p>Kind: {{ skill.kind }}</p>
+					<p>Level: {{ skill.level }}</p>
+					<p>{{ skill.describe }}</p>
+				</div>	
+          		{% endfor %}
+          	{% endif %}
+          </div>
+          <div class="col-md-10">
+          	{% if etc_skill_list %}
+          		<h3>ETC Skill</h3>
+          		{% for skill in etc_skill_list %}
+          		<div class="col-md-4">
+	          		<h3>{{ skill.name }}</h3>
+	            	<p>Kind: {{ skill.kind }}</p>
+					<p>Level: {{ skill.level }}</p>
+					<p>{{ skill.describe }}</p>
+				</div>	
+          		{% endfor %}	
+			{% endif %}
+		</div>	
+	</div><!--/.col-md-15-->
+</div><!-- /.blog-post -->
+{% endblock blog-main %}

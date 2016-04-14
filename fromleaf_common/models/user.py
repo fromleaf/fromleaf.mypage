@@ -10,14 +10,9 @@ def get_upload_to(instance, filename):
 
 
 class MemberInfo(models.Model):
+    
     def __init__(self, *args, **kwargs):
         super(MemberInfo, self).__init__(*args, **kwargs)
-
-    def set_member_info(self, **kwargs):
-        self.email = kwargs['email']
-        self.password = kwargs['password']
-        self.grade = kwargs['grade']
-        self.user_info = kwargs['user_info']
     
     def __unicode__(self):  # __str__ on Python3
         return self.email    
@@ -50,14 +45,6 @@ class MemberInfo(models.Model):
 class ExtraUserInfo(models.Model):
     def __init__(self, *args, **kwargs):
         super(ExtraUserInfo, self).__init__(*args, **kwargs)
-        
-    def set_extra_user_info(self, **kwargs):
-        self.address = kwargs['address']
-        self.phone_number = kwargs['phone_number']
-        self.cellphone_number = kwargs['phone_number']
-        self.profile_image = kwargs['profile_image']
-        self.blog_address = kwargs['blog_address']
-        self.user_info = kwargs['user_info']
         
     def get_upload_to(self, filename):
         folder_name = 'photos/profile/'
@@ -107,10 +94,6 @@ class UserSNSInfo(models.Model):
 class UserInfo(models.Model):
     def __init__(self, *args, **kwargs):
         super(UserInfo, self).__init__(*args, **kwargs)
-        
-    def set_user(self, **kwargs):
-        self.name = kwargs['name']
-        self.birthday = kwargs['birthday']
     
     def __unicode__(self):  # __str__ on Python3
         return self.name  

@@ -7,6 +7,7 @@ from fromleaf_common.models.comment import SimpleComment
 from fromleaf_common.models.page import PageContainer
 from fromleaf_opening.models import OpeningPage
 from fromleaf_aboutme.models import AboutMePage
+from fromleaf_myskill.models import MySkillPage
 
 
 logger = logging.getLogger(__name__)
@@ -38,6 +39,8 @@ def get_current_page_info(view_class, user_member_info):
         current_page_info = get_object_or_404(AboutMePage, page_container=current_page_container)
     elif view_class.__class__.__name__ is 'OpeningView':
         current_page_info = get_object_or_404(OpeningPage, page_container=current_page_container)
+    elif view_class.__class__.__name__ is 'MySkillView':
+        current_page_info = get_object_or_404(MySkillPage, page_container=current_page_container)
     else:
         pass
     

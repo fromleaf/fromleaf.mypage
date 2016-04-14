@@ -22,7 +22,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^', include('fromleaf_opening.urls', namespace='opening')),
     url(r'^aboutme/', include('fromleaf_aboutme.urls', namespace='aboutme')),
-#     url(r'^$', SkillsView.as_view(), name='skills'),
+    url(r'^myskill/', include('fromleaf_myskill.urls', namespace='myskill')),
 #     url(r'^$', PortfolioView.as_view(), name='portfolio'),
 #     url(r'^$', ContactMeView.as_view(), name='contactme'),
     url(r'^darly/', include('darly.urls', namespace='darly')),
