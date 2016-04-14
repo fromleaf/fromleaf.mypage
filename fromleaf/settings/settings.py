@@ -135,6 +135,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'localhost'
+# EMAIL_PORT = '1025'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'fromleaf@gmail.com'
+EMAIL_HOST_PASSWORD = 'vftsvvrssbgywsmy'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # LOGGING
 LOGGING = {

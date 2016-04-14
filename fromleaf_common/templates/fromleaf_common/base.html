@@ -40,7 +40,7 @@
 	          	<li><a href="/myskill">My Skill</a></li>
 	          	<li><a href="#">Portfolio</a></li>
 	          	<li><a href="#">Studying</a></li>
-	          	<li><a href="#">Contact Me</a></li>
+	          	<li><a href="/contactme">Contact Me</a></li>
 	          	<li><a href="/darly">Darly</a></li>
 	          	<li><a href="/admin">Admin</a></li>       
 		</ul>
@@ -71,20 +71,6 @@
 				<ol class="list-unstyled">
 				{% for article in latest_article_list %}
 				<li><a href="#">{{ article.title }} ({{ article.created_at }})</a></li>
-				<!-- 나중에 포멧을 참고하기 위해 남겨둔다. 
-					<li><a href="#">March 2014</a></li>
-					<li><a href="#">February 2014</a></li>
-					<li><a href="#">January 2014</a></li>
-					<li><a href="#">December 2013</a></li>
-					<li><a href="#">November 2013</a></li>
-					<li><a href="#">October 2013</a></li>
-					<li><a href="#">September 2013</a></li>
-					<li><a href="#">August 2013</a></li>
-					<li><a href="#">July 2013</a></li>
-					<li><a href="#">June 2013</a></li>
-					<li><a href="#">May 2013</a></li>
-					<li><a href="#">April 2013</a></li>
-				-->
 				{% endfor %}
 				</ol>
 			</div>
