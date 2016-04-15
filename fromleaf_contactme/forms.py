@@ -25,7 +25,6 @@ class ContactForm(forms.Form):
         if subject and message and email:
             try:
                 send_mail(email_subject, message, email, [user_member_info.email], fail_silently=False)
-                #send_mail('test', 'test message', 'fromleaf@gmail.com', ['fromleaf@gmail.com'], fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return HttpResponse('/contactme/thanks/')

@@ -38,10 +38,9 @@
 			<li class="active"><a href="/">Home</a></li>
 	          	<li><a href="/aboutme">About Me</a></li>
 	          	<li><a href="/myskill">My Skill</a></li>
-	          	<li><a href="#">Portfolio</a></li>
+	          	<li><a href="/history">History</a></li>
 	          	<li><a href="#">Studying</a></li>
 	          	<li><a href="/contactme">Contact Me</a></li>
-	          	<li><a href="/darly">Darly</a></li>
 	          	<li><a href="/admin">Admin</a></li>       
 		</ul>
 		</nav>
@@ -75,14 +74,12 @@
 				</ol>
 			</div>
 			<div class="sidebar-module">
-				<h4>Elsewhere</h4>
+				<h4>Elsewhere</h4>sidebar_user_sns_info_list
 				<ol class="list-unstyled">
-					<li><a href="{{ sidebar_user_sns_info.github_address }}{{ sidebar_user_sns_info.github_id }}" 
-						target="_blank">Github: {{ sidebar_user_sns_info.github_id }}</a></li>
-					<li><a href="{{ sidebar_user_sns_info.facebook_address }}{{ sidebar_user_sns_info.facebook_id }}" 
-						target="_blank">Facebook: {{ sidebar_user_sns_info.facebook_id }}</a></li>
-					<li><a href="{{ sidebar_user_sns_info.linkedin_address }}{{ sidebar_user_sns_info.linkedin_id }}" 
-						target="_blank">Linkedin: {{ sidebar_user_sns_info.linkedin_id }}</a></li>
+					{% for sidebar_user_sns_info in sidebar_user_sns_info_list %}
+					<li><a href="{{ sidebar_user_sns_info.sns_name }} {{ sidebar_user_sns_info.user_id }}" 
+						target="_blank">{{ sidebar_user_sns_info.sns_name }}: {{ sidebar_user_sns_info.user_id }}</a></li>
+					{% endfor %}
 					<li><a href="{{ sidebar_user_extra_info.blog_address }}" 
 						target="_blank">Blog: {{ sidebar_user_extra_info.blog_address }}</a></li>
 				</ol>

@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from fromleaf_common.models.user import UserInfo, ExtraUserInfo, UserSNSInfo, MemberInfo
+from fromleaf_common.models.user import ExtraUserInfo, UserSNSInfo, MemberInfo
 from fromleaf_common.models.page import PageContainer
 from fromleaf_common.models.comment import SimpleComment
 from fromleaf_aboutme.models import AboutMePage
@@ -12,7 +12,7 @@ class AboutMePageTestCase(TestCase):
     def insert_aboutme_page_info(self):
         test_member_info = MemberInfo.objects.get(email=USER_EMAIL)
         test_aboutme_page = AboutMePage.objects.create(
-                                                page_container=PageContainer.objects.get(user_info=test_member_info.user_info)
+                                                page_container=PageContainer.objects.get(member_info=test_member_info)
                                             )                                      
          
         test_simple_comment_0 = SimpleComment.objects.create(
@@ -55,7 +55,7 @@ class AboutMePageTestCase(TestCase):
     # IndexError: list assignment index out of range 이 에러 메시지가 나온다.
     def insert_introduce_simple_comment(self):
         test_member_info = MemberInfo.objects.get(email=USER_EMAIL)
-        test_page_container = PageContainer.objects.get(user_info=test_member_info.user_info)
+        test_page_container = PageContainer.objects.get(member_info=test_member_info)
         test_aboutme_page = AboutMePage.objects.get(page_container=test_page_container)
         test_simple_comment_list = []
         

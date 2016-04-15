@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from fromleaf_common.models.user import UserInfo, ExtraUserInfo, UserSNSInfo, MemberInfo
+from fromleaf_common.models.user import ExtraUserInfo, UserSNSInfo, MemberInfo
 from fromleaf_common.models.page import PageContainer
 from fromleaf_myskill.models import MySkillPage, SkillSet
 
@@ -11,7 +11,7 @@ class MySkillPageTestCase(TestCase):
     def insert_myskill_page_info(self):
         test_member_info = MemberInfo.objects.get(email=USER_EMAIL)
         test_myskill_page = MySkillPage.objects.create(
-                                                page_container=PageContainer.objects.get(user_info=test_member_info.user_info)
+                                                page_container=PageContainer.objects.get(member_info=test_member_info)
                                             )                                      
          
         test_myskill_set_0 = SkillSet.objects.create(

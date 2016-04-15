@@ -35,8 +35,8 @@ class Article(models.Model):
     title = models.CharField(max_length=200, )
     describe = models.TextField(help_text='Input Describe', blank=True)
     code = models.TextField(help_text='Input Code', bank=True)
-    file = models.FileField(upload_to='uploads/%Y/%m/%d/', max_length=100)
-    image = models.ImageField(upload_to=get_upload_to)
+    file = models.FileField(upload_to='uploads/%Y/%m/%d/', max_length=100, blank=True)
+    image = models.ImageField(upload_to=get_upload_to, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     studying_page = models.ForeignKey(

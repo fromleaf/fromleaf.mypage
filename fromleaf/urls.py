@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^', include('fromleaf_opening.urls', namespace='opening')),
     url(r'^aboutme/', include('fromleaf_aboutme.urls', namespace='aboutme')),
     url(r'^myskill/', include('fromleaf_myskill.urls', namespace='myskill')),
-#    url(r'^portfolio/', include('fromleaf_portfolio.urls', namespace='portfolio')),
+    url(r'^history/', include('fromleaf_history.urls', namespace='history')),
     url(r'^contactme/', include('fromleaf_contactme.urls', namespace='contactme')),
     url(r'^darly/', include('darly.urls', namespace='darly')),
     url(r'^admin/', admin.site.urls),

@@ -1,4 +1,5 @@
 import os.path
+import logging
 
 from django.db import models
 from unidecode import unidecode
@@ -36,10 +37,8 @@ class MemberInfo(models.Model):
                              choices=MEMBER_CHOICES,
                              default=MEMBER
                              )
-    user_info = models.OneToOneField(
-                              'UserInfo',
-                              on_delete=models.CASCADE,
-                              )
+    created_at = models.DateTimeField(auto_now_add=True)    # auto_now_add 옵션 : 데이터가 “처음” 만들어 질 때
+                                                            # auto_now 옵션 : 데이터가 저장 될 때
     
     
 class ExtraUserInfo(models.Model):
@@ -62,44 +61,80 @@ class ExtraUserInfo(models.Model):
         
         return os.path.join(folder_name, filename)  
     
-    address = models.CharField(max_length=200)
-    phone_number = models.PositiveIntegerField()
-    cellphone_number = models.PositiveIntegerField()
-    profile_image = models.ImageField(upload_to=get_upload_to)
-    blog_address = models.URLField(max_length=200)
-    
-    user_info = models.OneToOneField(
-                              'UserInfo',
+    name = models.CharField(max_length=100)
+    birthday = models.DateField(default='1980-01-01')
+    address = models.CharField(max_length=200, blank=True)
+    phone_number = models.PositiveIntegerField(blank=True)
+    cellphone_number = models.PositiveIntegerField(blank=True)
+    profile_image = models.ImageField(upload_to=get_upload_to, blank=True)
+    blog_address = models.URLField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)    # auto_now_add 옵션 : 데이터가 “처음” 만들어 질 때
+                                                            # auto_now 옵션 : 데이터가 저장 될 때
+                                                            
+    member_info = models.OneToOneField(
+                              MemberInfo,
                               on_delete=models.CASCADE,
                               )
     
 
 class UserSNSInfo(models.Model):
-    def __init__(self, *args, **kwargs):
-        super(UserSNSInfo, self).__init__(*args, **kwargs) 
-        
-    github_id = models.CharField(max_length=200)
-    github_address = models.URLField(max_length=200)
-    facebook_id = models.CharField(max_length=200)
-    facebook_address = models.URLField(max_length=200)
-    linkedin_id = models.CharField(max_length=200)
-    linkedin_address = models.URLField(max_length=200)
     
-    extra_user_info = models.OneToOneField(
+    def __init__(self, *args, **kwargs):
+        super(UserSNSInfo, self).__init__(*args, **kwargs)
+    
+    def __unicode__(self):  # __str__ on Python3
+        return self.user_id  
+            
+    FACEBOOK = 'FACEBOOK'
+    GITHUB = 'GITHUB'
+    LINKEDIN = 'LINKEDIN'
+ 
+    SERVICE_CHOICES = (
+        (FACEBOOK, 'Facebook'),
+        (GITHUB, 'Github'),
+        (LINKEDIN, 'Linkedin'),
+    )
+    
+    sns_name =  models.CharField(max_length=200, choices=SERVICE_CHOICES)
+    sns_address = models.CharField(max_length=200)
+    user_id = models.CharField(max_length=200)
+    
+    extra_user_info = models.ForeignKey(
                               'ExtraUserInfo',
                               on_delete=models.CASCADE,
                               )
     
-    
-class UserInfo(models.Model):
+
+
+
+class Education(models.Model):
     def __init__(self, *args, **kwargs):
-        super(UserInfo, self).__init__(*args, **kwargs)
-    
+        super(Education, self).__init__(*args, **kwargs)
+        
     def __unicode__(self):  # __str__ on Python3
-        return self.name  
+        return self.name 
     
-    name = models.CharField(max_length=100)
-    birthday = models.DateField(default='1980-01-01')
-    created_at = models.DateTimeField(auto_now_add=True)    # auto_now_add 옵션 : 데이터가 “처음” 만들어 질 때
-                                                            # auto_now 옵션 : 데이터가 저장 될 때
+    ELEMENTARY_SCHOOL = 'ELEMENTARY_SCHOOL'
+    MIDDLE_SCHOOL = 'MIDDLE_SCHOOL'
+    HIGH_SCHOOL = 'HIGH_SCHOOL'
+    UNIVERSICY = 'UNIVERSICY'
+    GRADUATE_SCHOOL = 'GRADUATE_SCHOOL'
+    
+    SCHOOL_CHOICES = (
+        (ELEMENTARY_SCHOOL, 'Elementary School'),
+        (MIDDLE_SCHOOL, 'Middle School'),
+        (HIGH_SCHOOL, 'High School'),
+        (UNIVERSICY, 'University'),
+        (GRADUATE_SCHOOL, 'Graduate school')
+    )
+    
+    name = models.CharField(max_length=200)
+    kind = models.CharField(max_length=50, choices=SCHOOL_CHOICES)
+    score = models.FloatField(default=0.0, blank=True)
+    graduated_date = models.DateField(default='1980-01-01')
+    
+    extra_user_info = models.ForeignKey(
+                                        'ExtraUserInfo',
+                                        on_delete=models.CASCADE,
+                                    )
                                                             

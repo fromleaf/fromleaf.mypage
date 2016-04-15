@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+<head>
+    <title>{% block title %}Contact Me{% endblock title %}</title>
+</head>
+
+
+{% block blog-main %}
+<div class="error_message">
+	{% if error_message %}
+		<ul>
+		<li>{{error_message}}</li>
+		</ul>
+	{% endif %}
+</div>
+
+
+<div class="blog-post">
+
+</div><!-- /.blog-post -->
+{% endblock blog-main %}

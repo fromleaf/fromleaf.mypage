@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from fromleaf_common.models.user import UserInfo, ExtraUserInfo, UserSNSInfo, MemberInfo
+from fromleaf_common.models.user import ExtraUserInfo, UserSNSInfo, MemberInfo
 from fromleaf_common.models.page import PageContainer
 from fromleaf_common.models.comment import SimpleComment
 from fromleaf_opening.models import OpeningPage
@@ -11,7 +11,7 @@ class OpeningPageTestCase(TestCase):
     def insert_opening_page_info(self):
         test_member_info = MemberInfo.objects.get(email=USER_EMAIL)
         test_opening_page = OpeningPage.objects.create(
-                                                page_container=PageContainer.objects.get(user_info=test_member_info.user_info)
+                                                page_container=PageContainer.objects.get(member_info=test_member_info)
                                             )
         test_opening_page_comment_01 = SimpleComment.objects.create(
                                     title='제 Portfolio 를 위한 사이트입니다. 궁금하신 사항은 제 메일주소로 연락주세요.',
