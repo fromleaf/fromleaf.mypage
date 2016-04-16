@@ -14,7 +14,6 @@ class MySkillView(ListCommonView):
     
     def get_queryset(self):
         current_member_info = db.get_current_member_info(USER_EMAIL)
-        current_user_info = db.get_current_user_info(current_member_info)
         current_page_info = db.get_current_page_info(self, current_member_info)
         return SkillSet.objects.filter(my_skill_page=current_page_info)
     

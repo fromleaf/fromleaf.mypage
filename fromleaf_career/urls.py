@@ -17,10 +17,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.conf.urls import patterns, url
 
-from fromleaf_history import views
+from fromleaf_career import views
 
 urlpatterns = [
-    url(r'^$', views.HistoryView.as_view(), name='history_page'),
+    url(r'^$', views.CareerView.as_view(), name='career_page'),
     url(r'^company_detail/(?P<pk>\d+)/$', views.CompanyDetailView.as_view(), name='company_detail'),
     url(r'^project_detail/(?P<pk>\d+)/$', views.ProjectDetailView.as_view(), name='project_detail'),
 ]

@@ -8,6 +8,7 @@ from fromleaf_common.models.page import PageContainer
 from fromleaf_opening.models import OpeningPage
 from fromleaf_aboutme.models import AboutMePage
 from fromleaf_myskill.models import MySkillPage
+from fromleaf_career.models import CareerPage
 
 
 logger = logging.getLogger(__name__)
@@ -35,6 +36,8 @@ def get_current_page_info(view_class, current_member_info):
         current_page_info = get_object_or_404(OpeningPage, page_container=current_page_container)
     elif view_class.__class__.__name__ is 'MySkillView':
         current_page_info = get_object_or_404(MySkillPage, page_container=current_page_container)
+    elif view_class.__class__.__name__ is 'CareerView':
+        current_page_info = get_object_or_404(CareerPage, page_container=current_page_container)
     else:
         pass
     

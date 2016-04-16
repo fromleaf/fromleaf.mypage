@@ -1,19 +1,19 @@
 from django.contrib import admin
 
-from fromleaf_history.models import HistoryPage, Company, Project
+from fromleaf_career.models import CareerPage, Company, Project
 
-class ProjectInline(admin.TabularInline):
+class ProjectInline(admin.StackedInline):
     model = Project
     verbose_name_plural = 'create Project'
-
+    extra = 1
 
 class CompanyAdmin(admin.ModelAdmin):
     list_display = ['name', 'description', 'created_at']
     inlines = [ProjectInline]
 
             
-class HistoryAdmin(admin.ModelAdmin):
+class CareerAdmin(admin.ModelAdmin):
     list_display = ['id', 'page_name', 'page_describe', 'created_at']
     
-admin.site.register(HistoryPage, HistoryAdmin)
+admin.site.register(CareerPage, CareerAdmin)
 admin.site.register(Company, CompanyAdmin)

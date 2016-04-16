@@ -26,14 +26,14 @@ class TemplateCommonView(TemplateView):
         context['sidebar_user_extra_info'] = user_extra_info
         context['sidebar_user_sns_info_list'] = user_sns_info_list
         context['latest_article_list'] = comment_list[:2]
-        context['footer_user_info'] = user_member_info
+        context['member_info'] = user_member_info
         
         return context
     
 class ListCommonView(ListView):
     
     def get_context_data(self, **kwargs):
-        context = super(TemplateCommonView, self).get_context_data(**kwargs)
+        context = super(ListCommonView, self).get_context_data(**kwargs)
         user_member_info = db.get_current_member_info(USER_EMAIL)
         user_extra_info = db.get_current_user_extra_info(user_member_info)
         user_sns_info_list = db.get_current_user_sns_list_info(user_member_info)
@@ -46,7 +46,7 @@ class ListCommonView(ListView):
         context['sidebar_user_extra_info'] = user_extra_info
         context['sidebar_user_sns_info_list'] = user_sns_info_list
         context['latest_article_list'] = comment_list[:2]
-        context['footer_user_info'] = user_member_info
+        context['member_info'] = user_member_info
         
         return context
     
@@ -54,7 +54,7 @@ class ListCommonView(ListView):
 class FormCommonView(FormView):
     
     def get_context_data(self, **kwargs):
-        context = super(TemplateCommonView, self).get_context_data(**kwargs)
+        context = super(FormCommonView, self).get_context_data(**kwargs)
         user_member_info = db.get_current_member_info(USER_EMAIL)
         user_extra_info = db.get_current_user_extra_info(user_member_info)
         user_sns_info_list = db.get_current_user_sns_list_info(user_member_info)
@@ -67,7 +67,7 @@ class FormCommonView(FormView):
         context['sidebar_user_extra_info'] = user_extra_info
         context['sidebar_user_sns_info_list'] = user_sns_info_list
         context['latest_article_list'] = comment_list[:2]
-        context['footer_user_info'] = user_member_info
+        context['member_info'] = user_member_info
         
         return context
     
@@ -88,6 +88,6 @@ class DetailCommonView(DetailView):
         context['sidebar_user_extra_info'] = user_extra_info
         context['sidebar_user_sns_info_list'] = user_sns_info_list
         context['latest_article_list'] = comment_list[:2]
-        context['footer_user_info'] = user_member_info
+        context['member_info'] = user_member_info
         
         return context

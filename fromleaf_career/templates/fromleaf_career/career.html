@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+<head>
+    <title>{% block title %}History{% endblock title %}</title>
+</head>
+
+
+{% block blog-main %}
+<div class="error_message">
+	{% if error_message %}
+		<ul>
+		<li>{{error_message}}</li>
+		</ul>
+	{% endif %}
+</div>
+
+
+<div class="blog-post">
+	<div class="col-md-15">
+		<div class="jumbotron">
+			<h1>Hello, world!</h1>
+			<p>This is an example to show the potential of an offcanvas
+				layout pattern in Bootstrap. Try some responsive-range viewport
+				sizes to see it in action.</p>
+		</div><!--/.jumbotron -->
+		{% for company in company_list %}
+		<hr class="featurette-divider">
+
+		<div class="row company">
+			<div class="col-md-8">
+				<h2 class="company-heading">
+					{{ company.name }}
+					<span class="text-muted">{{ company.simple_description }}</span>
+				</h2>
+				<p class="lead">{{ company.description }}</p>
+			</div>
+			<div class="col-md-4">
+				<img class="featurette-image img-responsive center-block"
+					data-src="holder.js/500x500/auto"
+					src="{{ company.company_image.url }}"
+					alt="Generic placeholder image">
+			</div>
+		</div><!-- /.row company -->
+		{% empty %}
+		<h1>company_list empty</h1>
+		{% endfor %}
+	</div><!--/.col-md-15-->
+</div><!-- /.blog-post -->
+{% endblock blog-main %}

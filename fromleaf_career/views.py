@@ -1,0 +1,31 @@
+from django.shortcuts import render
+
+from fromleaf_common.utils import database as db
+from fromleaf_common.views import ListCommonView, DetailCommonView
+from fromleaf_career.models import Company, Project
+
+
+# TEMP_DATA: 나중에 지워야 함.
+USER_EMAIL = 'fromleaf@gmail.com'
+
+class CareerView(ListCommonView):
+    
+    template_name = 'fromleaf_career/career.html'
+    context_object_name = 'company_list'
+    
+    def get_queryset(self):
+        current_member_info = db.get_current_member_info(USER_EMAIL)
+        current_page_info = db.get_current_page_info(self, current_member_info)
+        return Company.objects.filter(career_page=current_page_info)
+    
+    def get_context_data(self, **kwargs):
+        context = super(CareerView, self).get_context_data(**kwargs)
+        
+        return context
+        
+
+class CompanyDetailView(ListCommonView):
+    template_name = 'fromleaf_career/company.html'
+    
+class ProjectDetailView(DetailCommonView):
+    template_name = 'fromleaf_career/project_detail.html'

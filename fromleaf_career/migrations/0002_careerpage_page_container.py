@@ -12,12 +12,12 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('fromleaf_common', '0001_initial'),
-        ('fromleaf_aboutme', '0001_initial'),
+        ('fromleaf_career', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='aboutmepage',
+            model_name='careerpage',
             name='page_container',
             field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='fromleaf_common.PageContainer'),
         ),

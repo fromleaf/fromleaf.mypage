@@ -25,7 +25,6 @@ class UserSNSInfoAdmin(admin.ModelAdmin):
 
 admin.site.register(PageContainer)
 admin.site.register(MemberInfo, MemberAdmin)
-admin.site.register(UserSNSInfo, UserSNSInfoAdmin)
 admin.site.register(ExtraUserInfo, ExtraUserAdmin)
 
 # TODO: After finished development, below code have to be delete.

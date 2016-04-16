@@ -21,6 +21,7 @@ class OpeningPageTestCase(TestCase):
                                         + 'framework:Django 1.9.5,'
                                         + 'database:SQLite,'
                                         + 'cloud_server:Azure - Web Apps(PTVS),'
+                                        + 'ui_design: Bootstrap,'
                                         + 'describe_1:이 사이트의 코드는,'
                                         + 'describe_2:공개되어 있습니다.,'
                                         + 'github_address:https://github.com/fromleaf/fromleaf.mypage',

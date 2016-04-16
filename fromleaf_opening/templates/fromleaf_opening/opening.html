@@ -16,7 +16,7 @@
 
 
 <div class="blog-post">
-	<h2 class="blog-post-title">Welcome {{ site_user_info.name }}'s Blog</h2>	
+	<h2 class="blog-post-title">Welcome {{ site_user_extra_info.name }}'s Blog</h2>	
 	<div class="row featurette">
 		<div class="col-md-4 col-md-offset-0">
 			<img class="img-thumbnail img-responsive center-block" data-src="holder.js/200x200/auto" 
@@ -36,6 +36,7 @@
 	              <li>Framework: {{ opening_page_info.framework }}</li>
 	              <li>Database: {{ opening_page_info.database }}</li>
 	              <li>Cloud Server: {{ opening_page_info.cloud_server }}</li>
+	              <li>UI Design: {{ opening_page_info.ui_design }}</li>
 	            </ul>
 	        <p>{{ opening_page_info.describe_1 }} <a href="{{ opening_page_info.github_address }}" target="_blank">{{ opening_page_info.github_address }}</a> {{ opening_page_info.describe_2 }}</p>
         </div>

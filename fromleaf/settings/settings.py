@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'fromleaf_opening',
     'fromleaf_aboutme',
     'fromleaf_myskill',
-    'fromleaf_history',
+    'fromleaf_career',
     'fromleaf_studying',
     'fromleaf_contactme',
     'darly',
