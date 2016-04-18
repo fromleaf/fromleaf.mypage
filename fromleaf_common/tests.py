@@ -8,7 +8,7 @@ USER_EMAIL = 'fromleaf@gmail.com'
 
 def set_sns_address(sns_name):
     FACEBOOK_ADDRESS = 'http://www.facebook.com/'
-    GITHUB_ADDRESS = 'http://www.github.com'
+    GITHUB_ADDRESS = 'http://www.github.com/'
     LINKEDIN_ADDRESS = 'http://www.linkedin.com/in/'
     sns_address = ''
     
