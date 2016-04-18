@@ -25,14 +25,14 @@
 		</div><!--/.jumbotron -->
 		{% for company in company_list %}
 		<hr class="featurette-divider">
-
 		<div class="row company">
 			<div class="col-md-8">
 				<h2 class="company-heading">
 					{{ company.name }}
-					<span class="text-muted">{{ company.simple_description }}</span>
 				</h2>
-				<p class="lead">{{ company.description }}</p>
+				<p>{{ company.started_date }} ~ {{ company.finished_date }}</p>
+				<span class="text-muted">{{ company.simple_description }}</span>
+				<p><a class="btn btn-primary" href="{% url 'career:company_detail' company.id %}" role="button">View Detail &raquo;</a></p>
 			</div>
 			<div class="col-md-4">
 				<img class="featurette-image img-responsive center-block"
@@ -42,7 +42,7 @@
 			</div>
 		</div><!-- /.row company -->
 		{% empty %}
-		<h1>company_list empty</h1>
+		<li>Sorry, no company in this list.</li>
 		{% endfor %}
 	</div><!--/.col-md-15-->
 </div><!-- /.blog-post -->

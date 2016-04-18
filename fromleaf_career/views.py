@@ -24,8 +24,17 @@ class CareerView(ListCommonView):
         return context
         
 
-class CompanyDetailView(ListCommonView):
+class CompanyDetailView(DetailCommonView):
     template_name = 'fromleaf_career/company.html'
+    model = Company
+    context_object_name = 'company'
+ 
+    def get_context_data(self, **kwargs):
+        context = super(CompanyDetailView, self).get_context_data(**kwargs)
+        current_company = self.get_object()
+        context['project_list'] = db.get_current_project_list(current_company)
+        return context
+    
     
 class ProjectDetailView(DetailCommonView):
     template_name = 'fromleaf_career/project_detail.html'

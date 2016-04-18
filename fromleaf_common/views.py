@@ -75,7 +75,7 @@ class FormCommonView(FormView):
 class DetailCommonView(DetailView):
     
     def get_context_data(self, **kwargs):
-        context = super(TemplateCommonView, self).get_context_data(**kwargs)
+        context = super(DetailCommonView, self).get_context_data(**kwargs)
         user_member_info = db.get_current_member_info(USER_EMAIL)
         user_extra_info = db.get_current_user_extra_info(user_member_info)
         user_sns_info_list = db.get_current_user_sns_list_info(user_member_info)

@@ -52,7 +52,9 @@ class Company(models.Model):
         return self.name
     
     name = models.CharField(max_length=200)
-    simple_description= models.CharField(max_length=300, blank=True)
+    started_date = models.DateField()
+    finished_date = models.DateField(blank=True)
+    simple_description = models.CharField(max_length=300, blank=True)
     description = models.CharField(max_length=400, blank=True)
     company_image = models.ImageField(upload_to=get_upload_to, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -88,6 +90,10 @@ class Project(models.Model):
         return os.path.join(folder_name, filename) 
     
     title = models.CharField(max_length=200)
+    simple_description = models.CharField(max_length=300, blank=True)
+    duty_description = models.CharField(max_length=300, blank=True)
+    started_date = models.DateField()
+    finished_date = models.DateField(blank=True)
     language = models.CharField(max_length=200, blank=True)
     system = models.CharField(max_length=200, blank=True)
     framework = models.CharField(max_length=200, blank=True)

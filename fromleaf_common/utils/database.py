@@ -8,8 +8,7 @@ from fromleaf_common.models.page import PageContainer
 from fromleaf_opening.models import OpeningPage
 from fromleaf_aboutme.models import AboutMePage
 from fromleaf_myskill.models import MySkillPage
-from fromleaf_career.models import CareerPage
-
+from fromleaf_career.models import CareerPage, Project
 
 logger = logging.getLogger(__name__)
 
@@ -72,3 +71,8 @@ def get_comment_list_for_sidebar(current_member_info):
     comment_list = SimpleComment.objects.filter(aboutme_page=current_aboutme_page)
     
     return comment_list
+
+
+def get_current_project_list(current_company):
+    project_list = Project.objects.filter(company=current_company).order_by('-finished_date')
+    return project_list
