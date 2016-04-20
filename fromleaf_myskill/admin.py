@@ -10,7 +10,7 @@ class MySkillSetInline(admin.TabularInline):
         
             
 class MySkillPageAdmin(admin.ModelAdmin):
-    list_display = ['id', 'page_name', 'page_describe', 'created_at']
+    list_display = ['id', 'name', 'description', 'created_at']
     inlines = [MySkillSetInline]
     
 admin.site.register(MySkillPage, MySkillPageAdmin)

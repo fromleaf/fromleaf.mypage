@@ -10,8 +10,8 @@ class StudyingPage(models.Model):
     def __unicode__(self):  # __str__ on Python3
         return self.page_name 
     
-    page_name = 'StudyingPage'
-    page_describe = 'this page is Studying page.'    
+    name = 'StudyingPage'
+    description = 'this page is Studying page.'    
     page_container = models.OneToOneField(
                               PageContainer,
                               on_delete=models.CASCADE,

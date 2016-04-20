@@ -9,10 +9,10 @@ class AboutMePage(models.Model):
         super(AboutMePage, self).__init__(*args, **kwargs)
     
     def __unicode__(self):  # __str__ on Python3
-        return self.page_name 
+        return self.name 
     
-    page_name = 'AboutMePage'
-    page_describe = 'This page is About Me page.'    
+    name = 'About Me'
+    description = 'This page is About Me Page. It is for simple introduce of me.'
     page_container = models.OneToOneField(
                               PageContainer,
                               on_delete=models.CASCADE,

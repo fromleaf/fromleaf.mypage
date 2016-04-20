@@ -46,11 +46,6 @@
 		</nav>
 	    {% endblock main_menu_bar %}
 	</div>
-	<!-- 
-	<div class="blog-header">
-        <p class="lead blog-description">{{ page_info.page_name }}: {{ page_info.page_describe }}</p>
-	</div>
-	 -->
 	{% autoescape on %}
 	<div class="row">
 		<div class="blog-main col-md-9">
@@ -66,22 +61,14 @@
 				<p>{{ sidebar_user_introduce_comment.title }}<p><em>{{ sidebar_user_introduce_comment.comment }}</em></p></p>
 			</div>
 			<div class="sidebar-module">
-				<h4>Archives</h4>
-				<ol class="list-unstyled">
-				{% for article in latest_article_list %}
-				<li><a href="#">{{ article.title }} ({{ article.created_at }})</a></li>
-				{% endfor %}
-				</ol>
-			</div>
-			<div class="sidebar-module">
-				<h4>Elsewhere</h4>sidebar_user_sns_info_list
+				<h4>Elsewhere</h4>
 				<ol class="list-unstyled">
 					{% for sidebar_user_sns_info in sidebar_user_sns_info_list %}
-					<li><a href="{{ sidebar_user_sns_info.sns_address }}{{ sidebar_user_sns_info.user_id }}" 
-						target="_blank">{{ sidebar_user_sns_info.sns_name }}: {{ sidebar_user_sns_info.user_id }}</a></li>
+					<li>{{ sidebar_user_sns_info.sns_name|title }}:<a href="{{ sidebar_user_sns_info.sns_address }}{{ sidebar_user_sns_info.user_id }}" 
+						target="_blank"> {{ sidebar_user_sns_info.user_id }}</a></li>
 					{% endfor %}
-					<li><a href="{{ sidebar_user_extra_info.blog_address }}" 
-						target="_blank">Blog: {{ sidebar_user_extra_info.blog_address }}</a></li>
+					<li>Blog: <a href="{{ sidebar_user_extra_info.blog_address }}" 
+						target="_blank">{{ sidebar_user_extra_info.blog_address }}</a></li>
 				</ol>
 			</div>
 			{% endblock sidebar %}

@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from fromleaf_contactme.models import ContactMePage
+
+class ContactMePageAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'description', 'created_at']
+
+admin.site.register(ContactMePage, ContactMePageAdmin)

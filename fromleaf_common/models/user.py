@@ -130,8 +130,10 @@ class Education(models.Model):
     
     name = models.CharField(max_length=200)
     kind = models.CharField(max_length=50, choices=SCHOOL_CHOICES)
+    major = models.CharField(max_length=200, null=True)
     score = models.FloatField(default=0.0, blank=True)
-    graduated_date = models.DateField(default='1980-01-01')
+    entranced_date = models.DateField(default='1980-01-01', null=True)
+    graduated_date = models.DateField(default='1980-01-01', null=True)
     
     extra_user_info = models.ForeignKey(
                                         'ExtraUserInfo',

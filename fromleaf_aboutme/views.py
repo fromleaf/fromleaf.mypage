@@ -19,9 +19,12 @@ class AboutMeView(TemplateCommonView):
         site_user_extra_info = db.get_current_user_extra_info(user_member_info)
         page_info = db.get_current_page_info(self, user_member_info)
         introduce_comment_list = db.get_simple_comment_list(self, user_member_info)
+        education_list = db.get_current_user_education_info(user_member_info)
+        company_list = db.get_current_user_company_info(user_member_info)
         
-        context['page_info'] = page_info
-        context['site_user_extra_info'] = site_user_extra_info
         context['simple_comment_list'] = introduce_comment_list
+        context['site_user_extra_info'] = site_user_extra_info
+        context['education_list'] = education_list
+        context['company_list'] = company_list
         
         return context

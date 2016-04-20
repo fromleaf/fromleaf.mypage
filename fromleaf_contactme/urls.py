@@ -21,5 +21,5 @@ from fromleaf_contactme import views
 
 urlpatterns = [
     url(r'^$', views.ContactMeView.as_view(), name='contactme_page'),
-    url(r'^thanks/$', views.ContactMeView.as_view(), name='thanks'),
+    url(r'^thanks/$', views.ContactMeView.as_view(), name='thanks_page'),
 ]

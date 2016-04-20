@@ -17,16 +17,16 @@ class TemplateCommonView(TemplateView):
         user_member_info = db.get_current_member_info(USER_EMAIL)
         user_extra_info = db.get_current_user_extra_info(user_member_info)
         user_sns_info_list = db.get_current_user_sns_list_info(user_member_info)
-        # FIXME: 이건 계속 쓰일지 모르겠지만 TEST용으로 사용하는 겁니다.
-        comment_list = db.get_comment_list_for_sidebar(user_member_info)
+        introduce_comment = db.get_introduce_comment(user_member_info)
+        page_info = db.get_current_page_info(self, user_member_info)
 
         context['meta_user_info'] = user_extra_info
         context['sidebar_user_info'] = user_extra_info
-        context['sidebar_user_introduce_comment'] = comment_list[0]
+        context['sidebar_user_introduce_comment'] = introduce_comment
         context['sidebar_user_extra_info'] = user_extra_info
         context['sidebar_user_sns_info_list'] = user_sns_info_list
-        context['latest_article_list'] = comment_list[:2]
         context['member_info'] = user_member_info
+        context['page_info'] = page_info
         
         return context
     
@@ -37,16 +37,16 @@ class ListCommonView(ListView):
         user_member_info = db.get_current_member_info(USER_EMAIL)
         user_extra_info = db.get_current_user_extra_info(user_member_info)
         user_sns_info_list = db.get_current_user_sns_list_info(user_member_info)
-        # FIXME: 이건 계속 쓰일지 모르겠지만 TEST용으로 사용하는 겁니다.
-        comment_list = db.get_comment_list_for_sidebar(user_member_info)
+        introduce_comment = db.get_introduce_comment(user_member_info)
+        page_info = db.get_current_page_info(self, user_member_info)
 
         context['meta_user_info'] = user_extra_info
         context['sidebar_user_info'] = user_extra_info
-        context['sidebar_user_introduce_comment'] = comment_list[0]
+        context['sidebar_user_introduce_comment'] = introduce_comment
         context['sidebar_user_extra_info'] = user_extra_info
         context['sidebar_user_sns_info_list'] = user_sns_info_list
-        context['latest_article_list'] = comment_list[:2]
         context['member_info'] = user_member_info
+        context['page_info'] = page_info
         
         return context
     
@@ -58,16 +58,16 @@ class FormCommonView(FormView):
         user_member_info = db.get_current_member_info(USER_EMAIL)
         user_extra_info = db.get_current_user_extra_info(user_member_info)
         user_sns_info_list = db.get_current_user_sns_list_info(user_member_info)
-        # FIXME: 이건 계속 쓰일지 모르겠지만 TEST용으로 사용하는 겁니다.
-        comment_list = db.get_comment_list_for_sidebar(user_member_info)
+        introduce_comment = db.get_introduce_comment(user_member_info)
+        page_info = db.get_current_page_info(self, user_member_info)
 
         context['meta_user_info'] = user_extra_info
         context['sidebar_user_info'] = user_extra_info
-        context['sidebar_user_introduce_comment'] = comment_list[0]
+        context['sidebar_user_introduce_comment'] = introduce_comment
         context['sidebar_user_extra_info'] = user_extra_info
         context['sidebar_user_sns_info_list'] = user_sns_info_list
-        context['latest_article_list'] = comment_list[:2]
         context['member_info'] = user_member_info
+        context['page_info'] = page_info
         
         return context
     
@@ -79,15 +79,15 @@ class DetailCommonView(DetailView):
         user_member_info = db.get_current_member_info(USER_EMAIL)
         user_extra_info = db.get_current_user_extra_info(user_member_info)
         user_sns_info_list = db.get_current_user_sns_list_info(user_member_info)
-        # FIXME: 이건 계속 쓰일지 모르겠지만 TEST용으로 사용하는 겁니다.
-        comment_list = db.get_comment_list_for_sidebar(user_member_info)
+        introduce_comment = db.get_introduce_comment(user_member_info)
+        page_info = db.get_current_page_info(self, user_member_info)
 
         context['meta_user_info'] = user_extra_info
         context['sidebar_user_info'] = user_extra_info
-        context['sidebar_user_introduce_comment'] = comment_list[0]
+        context['sidebar_user_introduce_comment'] = introduce_comment
         context['sidebar_user_extra_info'] = user_extra_info
         context['sidebar_user_sns_info_list'] = user_sns_info_list
-        context['latest_article_list'] = comment_list[:2]
         context['member_info'] = user_member_info
+        context['page_info'] = page_info
         
         return context

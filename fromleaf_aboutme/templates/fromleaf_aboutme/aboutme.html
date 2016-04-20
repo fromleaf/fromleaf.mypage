@@ -1,31 +1,72 @@
 {% extends "base.html" %}
 
 <head>
-    <title>{% block title %}About Me | NOT IMPORTANT {% endblock title %}</title>
+<title>{% block title %}About Me | NOT IMPORTANT {% endblock title %}</title>
 </head>
 
 
 {% block blog-main %}
 <div class="error_message">
 	{% if error_message %}
-		<ul>
+	<ul>
 		<li>{{error_message}}</li>
-		</ul>
+	</ul>
 	{% endif %}
 </div>
 
 
 <div class="blog-post">
 	<h2 class="blog-post-title">{{ site_user_extra_info.name }}'s Blog</h2>
-	<img src="{{ site_user_extra_info.profile_image.url }}" alt="..." class="img-thumbnail">
-	<p class="blog-post-meta">{{ site_user_extra_info.created_at }} <a href="/contactme">{{ site_user_extra_info.name }}</a></p>
-	
-	
+	<img src="{{ site_user_extra_info.profile_image.url }}" alt="..."
+		class="img-thumbnail">
+	<p class="blog-post-meta">
+		{{ site_user_extra_info.created_at }} <a href="/contactme">{{ site_user_extra_info.name }}</a>
+	</p>
+
 	<div class="comments">
 		{% for comment in simple_comment_list %}
 		<p>{{ comment.title }}</p>
 		<p>{{ comment.comment }}</p>
 		{% endfor %}
-	</div>		
-</div><!-- /.blog-post -->
+	</div>
+	<hr class="featurette-divider">
+	<h4>Education</h4>
+		{% for education in education_list %}
+		<div class="panel panel-default">
+			<div class="panel-heading">{{ education.name }}</div>
+			<div class="panel-body">
+				{% if education.entranced_date == None %}
+				<li>Graduated: {{ education.graduated_date}}</li>
+				{% else %}
+				<li>{{ education.entranced_date }} ~ {{ education.graduated_date}}</li>
+				{% endif %}
+				{% if education.major %}
+				<li>Major: {{ education.major }}</li>
+				{% endif %} 
+			</div>
+		</div>
+		{% empty %}
+		<li>Sorry, your education list empty.</li> 
+		{% endfor %}
+	<hr class="featurette-divider">
+	<h4>Career</h4>
+		{% for company in company_list %}
+		<div class="panel panel-default">
+			<div class="panel-heading">{{ company.name }}</div>
+			<div class="panel-body">
+				{% if company.finished_date == None %}
+				<li>{{ company.started_date }} ~ 재직중</li>
+				{% else %}
+				<li>{{ company.started_date }} ~ {{ company.finished_date }}</li>
+				{% endif %}
+				{% if company.simple_description %}
+				<li>{{ company.simple_description }}</li>
+				{% endif %} 
+			</div>
+		</div>
+		{% empty %}
+		<li>Sorry, your education list empty.</li> 
+		{% endfor %}
+</div>
+<!-- /.blog-post -->
 {% endblock blog-main %}

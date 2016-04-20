@@ -16,10 +16,10 @@ class CareerPage(models.Model):
         super(CareerPage, self).__init__(*args, **kwargs)
     
     def __unicode__(self):  # __str__ on Python3
-        return self.page_name 
+        return self.name 
     
-    page_name = 'CareerPage'
-    page_describe = 'This page is Career Page.'    
+    name = 'Career Page'
+    description = '그 동안 다년던 회사에 대한 설명과 제가 참여했던 프로젝트 및 개발에 대한 내용을 정리했습니다.'    
     page_container = models.OneToOneField(
                               PageContainer,
                               on_delete=models.CASCADE,
@@ -53,10 +53,10 @@ class Company(models.Model):
     
     name = models.CharField(max_length=200)
     started_date = models.DateField()
-    finished_date = models.DateField(blank=True)
-    simple_description = models.CharField(max_length=300, blank=True)
-    description = models.CharField(max_length=400, blank=True)
-    company_image = models.ImageField(upload_to=get_upload_to, blank=True)
+    finished_date = models.DateField(null=True)
+    simple_description = models.CharField(max_length=300, null=True)
+    description = models.CharField(max_length=400, null=True)
+    company_image = models.ImageField(upload_to=get_upload_to, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     career_page = models.ForeignKey(
@@ -90,15 +90,16 @@ class Project(models.Model):
         return os.path.join(folder_name, filename) 
     
     title = models.CharField(max_length=200)
-    simple_description = models.CharField(max_length=300, blank=True)
-    duty_description = models.CharField(max_length=300, blank=True)
+    simple_description = models.CharField(max_length=300, null=True)
+    duty_description = models.CharField(max_length=300, null=True)
     started_date = models.DateField()
-    finished_date = models.DateField(blank=True)
-    language = models.CharField(max_length=200, blank=True)
-    system = models.CharField(max_length=200, blank=True)
-    framework = models.CharField(max_length=200, blank=True)
-    architecture_image = models.ImageField(upload_to=get_upload_to, blank=True)
-    architecture_describe = models.CharField(max_length=400, blank=True)
+    finished_date = models.DateField(null=True)
+    language = models.CharField(max_length=200, null=True)
+    system = models.CharField(max_length=200, null=True)
+    framework = models.CharField(max_length=200, null=True)
+    database = models.CharField(max_length=200, null=True)
+    architecture_image = models.ImageField(upload_to=get_upload_to, null=True)
+    architecture_describe = models.CharField(max_length=400, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     company = models.ForeignKey(

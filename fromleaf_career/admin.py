@@ -13,7 +13,7 @@ class CompanyAdmin(admin.ModelAdmin):
 
             
 class CareerAdmin(admin.ModelAdmin):
-    list_display = ['id', 'page_name', 'page_describe', 'created_at']
+    list_display = ['id', 'name', 'description', 'created_at']
     
 admin.site.register(CareerPage, CareerAdmin)
 admin.site.register(Company, CompanyAdmin)

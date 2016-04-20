@@ -13,7 +13,7 @@ class SimpleCommentInline(admin.TabularInline):
         
             
 class AboutMeAdmin(admin.ModelAdmin):
-    list_display = ['id', 'page_name', 'page_describe', 'created_at']
+    list_display = ['id', 'name', 'description', 'created_at']
     inlines = [SimpleCommentInline]
     
 admin.site.register(AboutMePage, AboutMeAdmin)
