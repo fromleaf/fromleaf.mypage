@@ -25,14 +25,14 @@
 					{{ company.name }}
 				</h2>
 				<p>{{ company.started_date }} ~ {{ company.finished_date }}</p>
-				<span class="text-muted">{{ company.simple_description }}</span>
+				<p><span class="text-muted">{{ company.simple_description }}</span><p>
 				<p><a class="btn btn-primary" href="{% url 'career:company_detail' company.id %}" role="button">View Detail &raquo;</a></p>
 			</div>
 			<div class="col-md-4">
-				<img class="featurette-image img-responsive center-block"
+				<a href="{% url 'career:company_detail' company.id %}" role="button"><img class="featurette-image img-responsive center-block"
 					data-src="holder.js/500x500/auto"
 					src="{{ company.company_image.url }}"
-					alt="Generic placeholder image">
+					alt="Generic placeholder image"></a>
 			</div>
 		</div><!-- /.row company -->
 		{% empty %}

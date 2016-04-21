@@ -17,17 +17,26 @@
 
 <div class="blog-post">
 	<h2 class="blog-post-title">{{ site_user_extra_info.name }}'s Blog</h2>
-	<img src="{{ site_user_extra_info.profile_image.url }}" alt="..."
-		class="img-thumbnail">
-	<p class="blog-post-meta">
-		{{ site_user_extra_info.created_at }} <a href="/contactme">{{ site_user_extra_info.name }}</a>
-	</p>
-
-	<div class="comments">
-		{% for comment in simple_comment_list %}
-		<p>{{ comment.title }}</p>
-		<p>{{ comment.comment }}</p>
-		{% endfor %}
+	<div class="row featurette">
+		<div class="col-md-4 col-md-offset-0">
+			{% if site_user_extra_info.profile_image != None %}
+			<img class="img-thumbnail" data-src="holder.js/100x100" 
+					src="{{ site_user_extra_info.profile_image.url }}" alt="Profile image">
+			{% else %}
+			<img class="img-thumbnail img-responsive" data-src="holder.js/100x100" 
+					src="/media/photos/default/no_image.png" alt="Profile image">
+			{% endif %}
+			<p class="blog-post-meta">
+			{{ site_user_extra_info.created_at }} <a href="/contactme">{{ site_user_extra_info.name }}</a>
+			</p>
+		</div>
+		
+		<div class="comments">
+			{% for comment in simple_comment_list %}
+			<p><h4>{{ comment.title }}</h4></p>
+			<p>{{ comment.comment }}</p>
+			{% endfor %}
+		</div>
 	</div>
 	<hr class="featurette-divider">
 	<h4>Education</h4>

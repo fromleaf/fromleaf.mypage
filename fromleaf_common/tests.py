@@ -67,7 +67,7 @@ class UserTestCase(TestCase):
                                                     address='경기도 남양주시 와부읍 덕소리 진도아파트 106동 1604',
                                                     phone_number='0315218508',
                                                     cellphone_number='01089481379',
-                                                    profile_image='photos/profile/yun.jpeg',
+                                                    profile_image='photos/profile/myphoto.jpg',
                                                     blog_address='http://fromleaf.tistory.com',
                                                     member_info=current_member_info,
                                                 )

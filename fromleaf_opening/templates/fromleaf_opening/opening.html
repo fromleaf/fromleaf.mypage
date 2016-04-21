@@ -19,8 +19,14 @@
 	<h2 class="blog-post-title">Welcome {{ site_user_extra_info.name }}'s Page</h2>	
 	<div class="row featurette">
 		<div class="col-md-4 col-md-offset-0">
-			<img class="img-thumbnail img-responsive center-block" data-src="holder.js/200x200/auto" 
-				src="{{ site_user_extra_info.profile_image.url }}" alt="Generic placeholder image">
+		{% if site_user_extra_info.profile_image != None %}
+		<img class="img-thumbnail img-responsive center-block" data-src="holder.js/200x200/auto" 
+				src="{{ site_user_extra_info.profile_image.url }}" alt="Profile image">
+		{% else %}
+		<img class="img-thumbnail img-responsive center-block" data-src="holder.js/200x200/auto" 
+				src="/media/photos/default/no_image.png" alt="Profile image">
+		{% endif %}
+			
         </div>
         <div class="col-md-8 col-md-offset-0">
         <h4 class="featurette-heading">

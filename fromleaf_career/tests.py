@@ -48,7 +48,7 @@ class CareerPageTestCase(TestCase):
                                         + '다른 회사 간의 협업, 이슈 대응, 문서화 등 개발뿐만 아니라 그 외적으로 필요한 전체적인 개발 과정을 배웠습니다. 또한 한 사람의 사회인으로써 '
                                         + '갖춰야 하는 인성을 배울 수 있었던 시간이었습니다. 이러한 장점에도 회사를 그만둔 것은 계속 이곳에 있으면 편안함에 빠져버릴 것 같은 '
                                         + '두려움 비슷한 감정을 느꼈습니다. 그래서 마지막 프로젝트를 마무리하고 회사를 그만두게 되었습니다.',
-                                        'photos/company/darly.jpeg',
+                                        'photos/company/alticast_logo.png',
                                         current_career_page 
                                         )
         acriil = self.insert_company(
@@ -62,7 +62,7 @@ class CareerPageTestCase(TestCase):
                                       + '다른 분들의 의견을 듣고 실제 서비스에 반영할 수 있는 그런 분위기였습니다. 이곳에서 저는 전체적인 개발 라이프 사이클을 배웠습니다. '
                                       + '신규 서비스를 기획하고, 설계하고, 구현하고, 테스트하고, 릴리즈 하는 과정 전체를 배웠습니다. 또한 자신의 의견을 표현하는 법, '
                                       + '실제 수업 시간과 책을 통해 배운 것들을 해볼 수 있었던 좋은 기회였습니다.',
-                                      'photos/company/darly.jpeg',
+                                      'photos/company/acriil_logo.png',
                                       current_career_page
                                       )
         ibm = self.insert_company(
@@ -74,7 +74,7 @@ class CareerPageTestCase(TestCase):
                                    '회사라는 곳을 처음 경험했습니다. 회사에서의 모든 것들이 처음 경험해보는 것이었습니다. 출근, 퇴근, 회식, Workshop 등등. '
                                    '그리고 대학교 4년이라는 시간 동안 배운 것들(개발, 개발과정, 문서화 등)을 직접 해볼 수 있었습니다. 그렇게 대학생활 중 가장 점수가 '
                                    + '좋았던 2등을 하는 성적을 받고, 입사 제안도 받았습니다. 그러나 조금 더 유연한 곳에서 개발 경험을 쌓고 싶어서 취업 준비생이 되었습니다.',
-                                   'photos/company/darly.jpeg',
+                                   'photos/company/ibm_logo.png',
                                    current_career_page
                                    )
     
@@ -88,6 +88,7 @@ class CareerPageTestCase(TestCase):
                                                   system=kwargs['system'],
                                                   framework=kwargs['framework'],
                                                   database=kwargs['database'],
+                                                  thumnail_image=kwargs['thumnail_image'],
                                                   architecture_image=kwargs['architecture_image'],
                                                   architecture_describe=kwargs['architecture_describe'],
                                                   company=kwargs['company'])                                               
@@ -115,8 +116,9 @@ class CareerPageTestCase(TestCase):
                                                   system='Ubuntu 12.04',
                                                   framework=None,
                                                   database=None,
-                                                  architecture_image='photos/architecture/darly.jpeg',
-                                                  architecture_describe='photos/architecture/darly.jpeg',
+                                                  thumnail_image='photos/project/alticast_00.jpeg',
+                                                  architecture_image='photos/architecture/alticast_project_00.png',
+                                                  architecture_describe='STB 부팅 중에 STB내 보안 모듈 버전을 확인하여, 최신 버전이 아닌 경우 H/E Server에 접속하여 새로운 보안 모듈을 다운로드 받습니다.',
                                                   company=alticast_company                                   
                                                 )
         alticast_project_01 = self.insert_project(
@@ -131,8 +133,9 @@ class CareerPageTestCase(TestCase):
                                                   system='Windows 7 (64bit)',
                                                   framework=None,
                                                   database=None,
-                                                  architecture_image='photos/architecture/darly.jpeg',
-                                                  architecture_describe='photos/architecture/darly.jpeg',
+                                                  thumnail_image='photos/project/alticast_01.jpeg',
+                                                  architecture_image=None,
+                                                  architecture_describe=None,
                                                   company=alticast_company
                                                 )
         alticast_project_02 = self.insert_project(
@@ -145,8 +148,9 @@ class CareerPageTestCase(TestCase):
                                                    system='Ubuntu 12.04',
                                                    framework=None,
                                                    database=None,
-                                                   architecture_image='photos/architecture/darly.jpeg',
-                                                   architecture_describe='photos/architecture/darly.jpeg',
+                                                   thumnail_image='photos/project/alticast_02.jpeg',
+                                                   architecture_image=None,
+                                                   architecture_describe=None,
                                                    company=alticast_company
                                                 )
         
@@ -160,8 +164,9 @@ class CareerPageTestCase(TestCase):
                                                    system=None,
                                                    framework='Spring',
                                                    database='MySQL',
-                                                   architecture_image='photos/architecture/darly.jpeg',
-                                                   architecture_describe='photos/architecture/darly.jpeg',
+                                                   thumnail_image='photos/project/acriil_00.jpeg',
+                                                   architecture_image='photos/architecture/acriil_project_00.png',
+                                                   architecture_describe='Facebook 사용자의 동의하에 Feed를 가져와 감성 분석을 진행 한 후, 결과값을 이용해 각각의 영역별 감성 분석 결과를 보여줍니다.',
                                                    company=acriil_company
                                                 )
         acriil_project_02 = self.insert_project(
@@ -174,8 +179,9 @@ class CareerPageTestCase(TestCase):
                                                    system=None,
                                                    framework='JSP & Servlet',
                                                    database='MySQL',
-                                                   architecture_image='photos/architecture/darly.jpeg',
-                                                   architecture_describe='photos/architecture/darly.jpeg',
+                                                   thumnail_image='photos/project/acriil_01.jpeg',
+                                                   architecture_image='photos/architecture/acriil_project_00.png',
+                                                   architecture_describe='Facebook 사용자의 동의하에 Feed를 가져와 감성 분석을 진행 한 후, 결과값을 이용해 사용자의 감성과 유사한 영화를 추천해줍니다.',
                                                    company=acriil_company
                                                 )
         acriil_project_03 = self.insert_project(
@@ -188,8 +194,9 @@ class CareerPageTestCase(TestCase):
                                                    system=None,
                                                    framework='JSP & Servlet',
                                                    database='MySQL',
-                                                   architecture_image='photos/architecture/darly.jpeg',
-                                                   architecture_describe='photos/architecture/darly.jpeg',
+                                                   thumnail_image='photos/project/acriil_02.jpeg',
+                                                   architecture_image=None,
+                                                   architecture_describe=None,
                                                    company=acriil_company
                                                 )
         
@@ -203,8 +210,9 @@ class CareerPageTestCase(TestCase):
                                                system=None,
                                                framework='Struts',
                                                database='Oracle DB',
-                                               architecture_image='photos/architecture/darly.jpeg',
-                                               architecture_describe='photos/architecture/darly.jpeg',
+                                               thumnail_image='photos/project/ibm_01.jpeg',
+                                               architecture_image='photos/architecture/ibm_project_00.png',
+                                               architecture_describe='고객사의 요구사항을 분석, 구현하는 작업입니다.',
                                                company=ibm_company
                                             )
             

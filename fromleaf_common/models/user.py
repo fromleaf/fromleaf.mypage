@@ -66,7 +66,9 @@ class ExtraUserInfo(models.Model):
     address = models.CharField(max_length=200, blank=True)
     phone_number = models.PositiveIntegerField(blank=True)
     cellphone_number = models.PositiveIntegerField(blank=True)
-    profile_image = models.ImageField(upload_to=get_upload_to, blank=True)
+    profile_image = models.ImageField(upload_to=get_upload_to, 
+                                      default='/media/photos/default/no_image.png', 
+                                      blank=True)
     blog_address = models.URLField(max_length=200, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)    # auto_now_add 옵션 : 데이터가 “처음” 만들어 질 때
                                                             # auto_now 옵션 : 데이터가 저장 될 때

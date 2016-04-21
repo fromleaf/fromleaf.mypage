@@ -21,16 +21,17 @@
 		<hr class="featurette-divider">
 		<div class="row company">
 			<div class="col-md-8">
-				<h2 class="company-heading">{{ company.name }}</h2>
-				<p>{{ company.started_date }} ~ {{ company.finished_date }}</p>
-				<span class="text-muted">{{ company.simple_description }}</span>
-				<p>{{ company.description }}</p>
+				<h2 class="company-heading">{{company.name}}</h2>
+				<p>{{company.started_date}} ~ {{company.finished_date}}</p>
+				<p>
+					<span class="text-muted">{{company.simple_description}}</span>
+				</p>
+				<p>{{company.description}}</p>
 			</div>
 			<div class="col-md-4">
 				<img class="featurette-image img-responsive center-block"
 					data-src="holder.js/500x500/auto"
-					src="{{ company.company_image.url }}"
-					alt="Generic placeholder image">
+					src="{{company.company_image.url}}" alt="Generic placeholder image">
 			</div>
 		</div>
 		<!-- /.row company -->
@@ -39,21 +40,25 @@
 		<div class="row">
 			{% for project in project_list %}
 			<div class="col-md-4">
-				<img class="img-circle" src="{{ company.company_image.url }}"
+				<img class="img-circle" src="{{project.thumnail_image.url}}"
 					alt="Generic placeholder image" width="140" height="140">
-				<h3>{{ project.title }}</h3>
-				<p>{{ project.simple_description }}</p>
-				<p>{{ project.started_date }} ~ {{ project.finished_date }}</p>
+				<h5>{{project.title}}</h5>
+				{% if project.finished_date %}
+				<p>{{project.started_date}} ~ {{project.finished_date}}</p>
+				{% else %}
+				<p>{{project.started_date}}</p>
+				{% endif %}
+				<p>{{project.simple_description}}</p>
 				<p>
 					<!-- Button trigger modal -->
 					<button type="button" class="btn btn-primary" data-toggle="modal"
-						data-target="#myModal">View Detail &raquo;</button>
+						data-target="#myModal_{{project.pk}}">View Detail &raquo;</button>
 				</p>
-
+				
 				<!-- Modal -->
-				<div class="modal fade bs-example-modal-lg" id="myModal"
-					tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-					aria-hidden="true">
+				<div class="modal fade bs-example-modal-lg"
+					id="myModal_{{project.pk}}" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -61,45 +66,84 @@
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
-								<h4 class="modal-title">Introduce of {{ project.title }}</h4>
-									{{ project.started_date }} ~ {{ project.finished_date }}
+								<h4 class="modal-title">{{project.title}}</h4>
+								{% if project.finished_date %}
+								<p>{{project.started_date}} ~ {{project.finished_date}}</p>
+								{% else %}
+								<p>{{project.started_date}}</p>
+								{% endif %}
 							</div>
 							<div class="modal-body">
 								<div class="row featurette">
 									<div class="col-md-7 col-md-push-5">
-										<h4 class="featurette-heading">{{ project.simple_description }}</h4>
-										<p class="lead">
-										<li>Language: {{ project.language }}</li>
-										<li>System: {{ project.system }}</li>
-										<li>Framework: {{ project.framework }}</li>
-										<li>Architecture: {{ project.architecture_describe }}</li>
+										<h4 class="featurette-heading">Project Summary</h4>
+										{% if project.simple_description %}
+										<li>{{project.simple_description}}</li>
+										{% endif %} 
+										{% if project.duty_description %}
+										<li>Duty : {{project.duty_description}}</li> 
+										{% endif %}
+										<hr class="featurette-divider">
+										<p>
+										<h4 class="featurette-heading">Project System</h4>
 										</p>
+										{% if project.language %}
+										<li>Language: {{project.language}}</li> 
+										{% endif %} 
+										{% if project.system %}
+										<li>System: {{project.system}}</li> 
+										{% endif %} 
+										{% if project.framework %}
+										<li>Framework: {{project.framework}}</li> 
+										{% endif %}
 									</div>
+									{% if project.architecture_image.url != None %}
 									<div class="col-md-5 col-md-pull-7">
-										<img class="featurette-image img-responsive center-block"
-											data-src="holder.js/500x500/auto"
-											src="{{ project.architecture_image.url }}"
-											alt="Generic placeholder image">
+										<p>
+											<img class="featurette-image img-responsive center-block"
+												data-src="holder.js/500x500/auto"
+												src="{{project.architecture_image.url}}"
+												alt="Architecture image">
+										</p>
+										{% if project.architecture_describe %}
+										{{project.architecture_describe}}
+										{% endif %}
 									</div>
-								</div>
-								</div> <!-- /.modal-body -->
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default"
-										data-dismiss="modal">Close</button>
+									{% else %}
+									<div class="col-md-5 col-md-pull-7">
+										<p>
+											<img class="featurette-image img-responsive center-block"
+												data-src="holder.js/500x500/auto"
+												src="/media/photos/default/no_image.png"
+												alt="Architecture image">
+										</p>
+										{% if project.architecture_describe %}
+										{{project.architecture_describe}}
+										{% endif %}
+									</div>
+									{% endif %}
 								</div>
 							</div>
-							<!-- /.modal-content -->
+							<!-- /.modal-body -->
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
 						</div>
-						<!-- /.modal-dialog -->
+						<!-- /.modal-content -->
 					</div>
+					<!-- /.modal-dialog -->
+				</div>
+				<!-- /.modal -->
 				</div>
 				<!-- /.col-lg-4 -->
-				{% empty %}
-				<li>Project list is empty</li> {% endfor %}
-			</div>
-			<!-- /.row -->
+			{% empty %}
+			<li>Project list is empty</li>
+			{% endfor %}
 		</div>
-		<!--/.col-md-15-->
+		<!-- /.row -->
 	</div>
-	<!-- /.blog-post -->
-	{% endblock blog-main %}
+	<!--/.col-md-15-->
+</div>
+<!-- /.blog-post -->
+{% endblock blog-main %}

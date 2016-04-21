@@ -56,7 +56,10 @@ class Company(models.Model):
     finished_date = models.DateField(null=True)
     simple_description = models.CharField(max_length=300, null=True)
     description = models.CharField(max_length=400, null=True)
-    company_image = models.ImageField(upload_to=get_upload_to, null=True)
+    company_image = models.ImageField(upload_to=get_upload_to,
+                                      default='/media/photos/default/no_image.png', 
+                                      null=True
+                                      )
     created_at = models.DateTimeField(auto_now_add=True)
     
     career_page = models.ForeignKey(
@@ -73,7 +76,23 @@ class Project(models.Model):
     def __unicode__(self):  # __str__ on Python3
         return self.title
     
-    def get_upload_to(self, filename):
+    def get_thumnail_upload_to(self, filename):
+        folder_name = 'photos/project/'
+        filename = self.architecture_image.field.storage.get_valid_name(filename)
+
+        # do a unidecode in the filename and then
+        # replace non-ascii characters in filename with _ , to sidestep issues with filesystem encoding
+        filename = "".join((i if ord(i) < 128 else '_') for i in unidecode(filename))
+
+        # Truncate filename so it fits in the 100 character limit
+        # https://code.djangoproject.com/ticket/9893
+        while len(os.path.join(folder_name, filename)) >= 95:
+            prefix, dot, extension = filename.rpartition('.')
+            filename = prefix[:-1] + dot + extension
+        
+        return os.path.join(folder_name, filename)
+    
+    def get_architecture_upload_to(self, filename):
         folder_name = 'photos/architecture/'
         filename = self.architecture_image.field.storage.get_valid_name(filename)
 
@@ -98,7 +117,16 @@ class Project(models.Model):
     system = models.CharField(max_length=200, null=True)
     framework = models.CharField(max_length=200, null=True)
     database = models.CharField(max_length=200, null=True)
-    architecture_image = models.ImageField(upload_to=get_upload_to, null=True)
+    thumnail_image = models.ImageField(
+                                           upload_to=get_thumnail_upload_to, 
+                                           default='/media/photos/default/no_image.png',
+                                           null=True
+                                           )
+    architecture_image = models.ImageField(
+                                           upload_to=get_architecture_upload_to, 
+                                           default='/media/photos/default/no_image.png',
+                                           null=True
+                                           )
     architecture_describe = models.CharField(max_length=400, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     

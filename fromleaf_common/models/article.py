@@ -33,10 +33,13 @@ class Article(models.Model):
         return os.path.join(folder_name, filename) 
     
     title = models.CharField(max_length=200, )
-    describe = models.TextField(help_text='Input Describe', blank=True)
-    code = models.TextField(help_text='Input Code', bank=True)
-    file = models.FileField(upload_to='uploads/%Y/%m/%d/', max_length=100, blank=True)
-    image = models.ImageField(upload_to=get_upload_to, blank=True)
+    describe = models.TextField(help_text='Input Describe', null=True)
+    code = models.TextField(help_text='Input Code', null=True)
+    file = models.FileField(upload_to='uploads/%Y/%m/%d/', max_length=100, null=True)
+    image = models.ImageField(
+                              upload_to=get_upload_to, 
+                              default='/media/photos/default/no_image.png',
+                              null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     studying_page = models.ForeignKey(
