@@ -5,49 +5,25 @@ from fromleaf_common.models.user import ExtraUserInfo, UserSNSInfo, Education, M
 from fromleaf_common.models.page import PageContainer
 from fromleaf_common.utils import database as db
 
+def set_sns_address(sns_name):
+    FACEBOOK_ADDRESS = 'http://www.facebook.com/'
+    GITHUB_ADDRESS = 'http://www.github.com/'
+    LINKEDIN_ADDRESS = 'http://www.linkedin.com/in/'
+    sns_address = ''
+    
+    if sns_name is 'FACEBOOK':
+        sns_address = FACEBOOK_ADDRESS
+    elif sns_name is 'GITHUB':
+        sns_address = GITHUB_ADDRESS
+    elif sns_name is 'LINKEDIN':
+        sns_address = LINKEDIN_ADDRESS
+    
+    return sns_address
+
 class UserTestCase(TestCase):
     
-    def set_sns_address(self, sns_name):
-        FACEBOOK_ADDRESS = 'http://www.facebook.com/'
-        GITHUB_ADDRESS = 'http://www.github.com/'
-        LINKEDIN_ADDRESS = 'http://www.linkedin.com/in/'
-        sns_address = ''
-        
-        if sns_name is 'FACEBOOK':
-            sns_address = FACEBOOK_ADDRESS
-        elif sns_name is 'GITHUB':
-            sns_address = GITHUB_ADDRESS
-        elif sns_name is 'LINKEDIN':
-            sns_address = LINKEDIN_ADDRESS
-        
-        return sns_address
-
-
-    def create_sns_info(self, current_sns_name, current_user_id):
-        current_member_info = MemberInfo.objects.get(email=settings.USER_EMAIL) 
-        current_extra_user_info = ExtraUserInfo.objects.get(member_info=current_member_info)
-        
-        current_sns_address = self.set_sns_address(current_sns_name)
-        
-        current_sns_info = UserSNSInfo.objects.create(
-                                                sns_name=current_sns_name,
-                                                sns_address=current_sns_address,
-                                                user_id=current_user_id,
-                                                extra_user_info=current_extra_user_info
-                                            )
-        current_sns_info.save()
-        
-    def insert_education_info(self, current_name, current_kind, current_major, current_score, 
-                              current_entranced_date, current_graduate_date, current_extra_user_info):
-        current_education = Education.objects.create(
-                                                name=current_name,
-                                                kind=current_kind,
-                                                major=current_major,
-                                                score=current_score,
-                                                entranced_date=current_entranced_date,
-                                                graduated_date=current_graduate_date,
-                                                extra_user_info=current_extra_user_info
-                                                )
+    def insert_education_info(self, **kwargs):
+        current_education = Education.objects.create(**kwargs)
         current_education.save()
     
     
@@ -77,29 +53,40 @@ class UserTestCase(TestCase):
         current_member_info = MemberInfo.objects.get(email=settings.USER_EMAIL) 
         current_extra_user_info = ExtraUserInfo.objects.get(member_info=current_member_info)
         self.insert_education_info(
-                              '동화고등학교',
-                              'HIGH_SCHOOL',
-                              None,
-                              0.0,
-                              None,
-                              '2003-02-23',
-                              current_extra_user_info
+                              name='동화고등학교',
+                              kind='HIGH_SCHOOL',
+                              major=None,
+                              score=0.0,
+                              entranced_date=None,
+                              graduated_date='2003-02-23',
+                              extra_user_info=current_extra_user_info
                               )
         self.insert_education_info(
-                              '명지대학교',
-                              'UNIVERSITY',
-                              'Computer Engineering',
-                              2.86,
-                              '2004-03-02',
-                              '2012-02-23',
-                              current_extra_user_info
+                              name='명지대학교',
+                              kind='UNIVERSITY',
+                              major='Computer Engineering',
+                              score=2.86,
+                              entranced_date='2004-03-02',
+                              graduated_date='2012-02-23',
+                              extra_user_info=current_extra_user_info
                               )
+       
+    def create_sns_info(self, **kwargs):
+        current_member_info = MemberInfo.objects.get(email=settings.USER_EMAIL) 
+        current_extra_user_info = ExtraUserInfo.objects.get(member_info=current_member_info)
+        current_sns_address = set_sns_address(kwargs['sns_name'])
         
+        current_sns_info = UserSNSInfo.objects.create(
+                                                sns_address=current_sns_address,
+                                                extra_user_info=current_extra_user_info,
+                                                **kwargs
+                                            )
+        current_sns_info.save()    
     
     def insert_sns_user_info(self):  
-        self.create_sns_info('FACEBOOK', 'fromleaf') 
-        self.create_sns_info('GITHUB', 'fromleaf')
-        self.create_sns_info('LINKEDIN', 'fromleaf')
+        self.create_sns_info(sns_name='FACEBOOK', user_id='fromleaf') 
+        self.create_sns_info(sns_name='GITHUB', user_id='fromleaf')
+        self.create_sns_info(sns_name='LINKEDIN', user_id='fromleaf')
         
     def insert_page_container(self):
         current_member_info = MemberInfo.objects.get(email=settings.USER_EMAIL) 
@@ -109,10 +96,7 @@ class UserTestCase(TestCase):
                                                 )
         
         current_page_container.save()
-        
-   
-        
-        
+            
     def insert_user(self):
         self.insert_member_info()
         self.insert_extra_user_info()

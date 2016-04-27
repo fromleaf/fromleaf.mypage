@@ -10,7 +10,7 @@ from fromleaf_career.models import CareerPage, Company, Project
 class CareerPageTestCase(TestCase):
     
     
-    def insert_career_page_info(self):
+    def insert_career_page_info(self, **kwargs):
         current_member_info = MemberInfo.objects.get(email=settings.USER_EMAIL)
         current_career_page = CareerPage.objects.create(
                                                 page_container=PageContainer.objects.get(member_info=current_member_info)
@@ -18,18 +18,8 @@ class CareerPageTestCase(TestCase):
         current_career_page.save()
 
 
-    def insert_company(self, current_name, current_simple_desc,
-                       current_started_date, current_finished_date, current_desc,
-                       current_company_image, current_career_page):
-        current_company = Company.objects.create(
-                                            name=current_name,
-                                            simple_description=current_simple_desc,
-                                            started_date=current_started_date,
-                                            finished_date=current_finished_date,
-                                            description=current_desc,
-                                            company_image=current_company_image,
-                                            career_page=current_career_page
-                                        )
+    def insert_company(self, **kwargs):
+        current_company = Company.objects.create(**kwargs)
         current_company.save()
         
     def insert_company_info(self):
@@ -38,60 +28,47 @@ class CareerPageTestCase(TestCase):
                                                 page_container=PageContainer.objects.get(member_info=current_member_info)
                                             )
         alticast = self.insert_company(
-                                        'Alticast',
-                                        'IPTV 수신용 STB의 보안모듈인 CAS모듈을 H/E Server로부터 안전하게 내려받고, 안전하게 수행될 수 있도록 하는 iCAS모듈 및 SVM의 개발 및 유지보수 업무를 맡았습니다.',
-                                        '2013-03-01',
-                                        '2015-09-30',
-                                        'Startup 회사로 시작해 중견기업으로 성장한 회사였습니다. 중견기업이 됐음에도 Startup 회사의 문화를 계속 유지하고 있던 회사였습니다. '
+                                        name='Alticast',
+                                        simple_description='IPTV 수신용 STB의 보안모듈인 CAS모듈을 H/E Server로부터 안전하게 내려받고, 안전하게 수행될 수 있도록 하는 iCAS모듈 및 SVM의 개발 및 유지보수 업무를 맡았습니다.',
+                                        started_date='2013-03-01',
+                                        finished_date='2015-09-30',
+                                        description='Startup 회사로 시작해 중견기업으로 성장한 회사였습니다. 중견기업이 됐음에도 Startup 회사의 문화를 계속 유지하고 있던 회사였습니다. '
                                         + '그러한 문화가 장단점을 가지고 있다는 것을 알고 있는데, 제가 속해있던 팀은 단점보다 장점이 많았던 팀이었습니다.'
                                         + '좋은 멘토 분과 좋은 팀원분들을 만나, 개발자로써 좋은 조언을 많이 들을 수 있었던 회사였습니다. 기술적인 부분뿐만 아니라 다른 팀간의 협업, '
                                         + '다른 회사 간의 협업, 이슈 대응, 문서화 등 개발뿐만 아니라 그 외적으로 필요한 전체적인 개발 과정을 배웠습니다. 또한 한 사람의 사회인으로써 '
                                         + '갖춰야 하는 인성을 배울 수 있었던 시간이었습니다. 이러한 장점에도 회사를 그만둔 것은 계속 이곳에 있으면 편안함에 빠져버릴 것 같은 '
                                         + '두려움 비슷한 감정을 느꼈습니다. 그래서 마지막 프로젝트를 마무리하고 회사를 그만두게 되었습니다.',
-                                        'photos/company/alticast_logo.png',
-                                        current_career_page 
+                                        company_image='photos/company/alticast_logo.png',
+                                        career_page=current_career_page 
                                         )
         acriil = self.insert_company(
-                                      'Acriil',
-                                      '한글 및 영어 문장에서 감성을 분석하는 엔진 유지보수 및 감성 엔진을 이용한 Web 서비스 개발 및 유지보수 업무에 참여했습니다.',
-                                      '2012-05-01',
-                                      '2012-10-30',
-                                      '인턴 경험과 면접 당시 “잘 모르는 부분입니다.”라고 말할 수 있는 용기(?) 덕분에 팀장님께서 좋게 봐주셔서 입사할 수 있었습니다. '
+                                      name='Acriil',
+                                      simple_description='한글 및 영어 문장에서 감성을 분석하는 엔진 유지보수 및 감성 엔진을 이용한 Web 서비스 개발 및 유지보수 업무에 참여했습니다.',
+                                      started_date='2012-05-01',
+                                      finished_date='2012-10-30',
+                                      description='인턴 경험과 면접 당시 “잘 모르는 부분입니다.”라고 말할 수 있는 용기(?) 덕분에 팀장님께서 좋게 봐주셔서 입사할 수 있었습니다. '
                                       + '사용자의 문장에서 패턴과 단어가 담고 있는 감정을 분석한 결과 값을 이용해 서비스를 제공하려 했던 Startup회사였습니다.'
                                       + 'Startup이 가지고 있는 장점을 많이 가지고 있던 회사였습니다. 수평적 조직, 유연함, 언제든 자신의 아이디어를 얘기하고 '
                                       + '다른 분들의 의견을 듣고 실제 서비스에 반영할 수 있는 그런 분위기였습니다. 이곳에서 저는 전체적인 개발 라이프 사이클을 배웠습니다. '
                                       + '신규 서비스를 기획하고, 설계하고, 구현하고, 테스트하고, 릴리즈 하는 과정 전체를 배웠습니다. 또한 자신의 의견을 표현하는 법, '
                                       + '실제 수업 시간과 책을 통해 배운 것들을 해볼 수 있었던 좋은 기회였습니다.',
-                                      'photos/company/acriil_logo.png',
-                                      current_career_page
+                                      company_image='photos/company/acriil_logo.png',
+                                      career_page=current_career_page
                                       )
         ibm = self.insert_company(
-                                   '한국IBM',
-                                   '대학교와 한국IBM과의 연계로 약 5개월간 Internship에 참여했습니다. ' 
+                                   name='한국IBM',
+                                   simple_description='대학교와 한국IBM과의 연계로 약 5개월간 Internship에 참여했습니다. ' 
                                    + '맡았던 업무는 한국 IBM이 관리하고 있던 아모레퍼시픽의 상품 관리 및 인사 관리 사이트 유지보수 업무를 했습니다.',
-                                   '2011-09-01',
-                                   '2012-02-28',
-                                   '회사라는 곳을 처음 경험했습니다. 회사에서의 모든 것들이 처음 경험해보는 것이었습니다. 출근, 퇴근, 회식, Workshop 등등. '
-                                   '그리고 대학교 4년이라는 시간 동안 배운 것들(개발, 개발과정, 문서화 등)을 직접 해볼 수 있었습니다. 그렇게 대학생활 중 가장 점수가 '
+                                   started_date='2011-09-01',
+                                   finished_date='2012-02-28',
+                                   description='회사라는 곳을 처음 경험했습니다. 회사에서의 모든 것들이 처음 경험해보는 것이었습니다. 출근, 퇴근, 회식, Workshop 등등. '
+                                   + '그리고 대학교 4년이라는 시간 동안 배운 것들(개발, 개발과정, 문서화 등)을 직접 해볼 수 있었습니다. 그렇게 대학생활 중 가장 점수가 '
                                    + '좋았던 2등을 하는 성적을 받고, 입사 제안도 받았습니다. 그러나 조금 더 유연한 곳에서 개발 경험을 쌓고 싶어서 취업 준비생이 되었습니다.',
-                                   'photos/company/ibm_logo.png',
-                                   current_career_page
+                                   company_image='photos/company/ibm_logo.png',
+                                   career_page=current_career_page
                                    )
     
     def insert_project(self, **kwargs):
-#         current_project = Project.objects.create(title=kwargs['title'],
-#                                                   simple_description=kwargs['simple_description'],
-#                                                   duty_description=kwargs['duty_description'],
-#                                                   started_date=kwargs['started_date'],
-#                                                   finished_date=kwargs['finished_date'],
-#                                                   language=kwargs['language'],
-#                                                   system=kwargs['system'],
-#                                                   framework=kwargs['framework'],
-#                                                   database=kwargs['database'],
-#                                                   thumnail_image=kwargs['thumnail_image'],
-#                                                   architecture_image=kwargs['architecture_image'],
-#                                                   architecture_describe=kwargs['architecture_describe'],
-#                                                   company=kwargs['company'])
         current_project = Project.objects.create(**kwargs)                                                                                              
         current_project.save()
 
