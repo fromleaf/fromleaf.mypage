@@ -79,19 +79,20 @@ class CareerPageTestCase(TestCase):
                                    )
     
     def insert_project(self, **kwargs):
-        current_project = Project.objects.create(title=kwargs['title'],
-                                                  simple_description=kwargs['simple_description'],
-                                                  duty_description=kwargs['duty_description'],
-                                                  started_date=kwargs['started_date'],
-                                                  finished_date=kwargs['finished_date'],
-                                                  language=kwargs['language'],
-                                                  system=kwargs['system'],
-                                                  framework=kwargs['framework'],
-                                                  database=kwargs['database'],
-                                                  thumnail_image=kwargs['thumnail_image'],
-                                                  architecture_image=kwargs['architecture_image'],
-                                                  architecture_describe=kwargs['architecture_describe'],
-                                                  company=kwargs['company'])                                               
+#         current_project = Project.objects.create(title=kwargs['title'],
+#                                                   simple_description=kwargs['simple_description'],
+#                                                   duty_description=kwargs['duty_description'],
+#                                                   started_date=kwargs['started_date'],
+#                                                   finished_date=kwargs['finished_date'],
+#                                                   language=kwargs['language'],
+#                                                   system=kwargs['system'],
+#                                                   framework=kwargs['framework'],
+#                                                   database=kwargs['database'],
+#                                                   thumnail_image=kwargs['thumnail_image'],
+#                                                   architecture_image=kwargs['architecture_image'],
+#                                                   architecture_describe=kwargs['architecture_describe'],
+#                                                   company=kwargs['company'])
+        current_project = Project.objects.create(**kwargs)                                                                                              
         current_project.save()
 
         
