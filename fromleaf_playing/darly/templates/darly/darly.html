@@ -12,7 +12,7 @@
 
 {% if darly_photo_list %}
 	{% for darly_photo in darly_photo_list %}
-		<img src="{{ darly_photo.photo.url }}" alt="..." class="img-thumbnail">
+		<img src="{{ darly_photo.photo.url }}" alt="darly_photo" class="img-thumbnail">
 	{% empty %}
 		<li>Sorry, no Darly Photos in this list.</li></br>
 	{% endfor %}

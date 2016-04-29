@@ -25,7 +25,7 @@ class OpeningPageTestCase(TestCase):
         current_page_container = PageContainer.objects.get(member_info=current_member_info)
         current_opening_page = OpeningPage.objects.get(page_container=current_page_container)
         current_opening_page_comment = self.insert_opening_comment(
-                                                                   title='제 Portfolio 를 위한 사이트입니다. 궁금하신 사항은 제 메일주소로 연락주세요.',
+                                                                   title='저를 소개하기 위한 사이트입니다. 궁금하신 사항은 제 메일주소로 연락주세요.',
                                                                    comment='title:Development Environment,'
                                                                     + 'main_describe_1:이 사이트 개발환경 입니다.,'
                                                                     + 'language:Python 3.4.1,'

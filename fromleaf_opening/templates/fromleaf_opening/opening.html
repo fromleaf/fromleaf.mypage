@@ -5,17 +5,18 @@
 </head>
 
 {% block blog-main %}
-<div class="error_message">
+
+
+
+<div class="blog-post">
+	<div class="error_message">
 	{% if error_message %}
 		<ul>
 		<li>{{error_message}}</li>
 		</ul>
 	{% endif %}
-</div>
-
-
-
-<div class="blog-post">
+	</div>
+	
 	<h2 class="blog-post-title">Welcome {{ site_user_extra_info.name }}'s Page</h2>	
 	<div class="row featurette">
 		<div class="col-md-4 col-md-offset-0">

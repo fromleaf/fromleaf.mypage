@@ -3,7 +3,9 @@ from fromleaf_opening.tests import OpeningPageTestCase
 from fromleaf_aboutme.tests import AboutMePageTestCase
 from fromleaf_myskill.tests import MySkillPageTestCase
 from fromleaf_career.tests import CareerPageTestCase
+from fromleaf_playing.tests import PlayingPageTestCase
 from fromleaf_contactme.tests import ContactMePageTestCase
+
 
 # Test User 
 test_user = UserTestCase()
@@ -24,6 +26,11 @@ test_myskill_page.insert_myskill_page()
 # Test Career Page
 test_career_page = CareerPageTestCase()
 test_career_page.insert_career_page()
+
+# Test Playing Page
+test_playing_page = PlayingPageTestCase()
+test_playing_page.insert_playing_page()
+
 
 # Test ContactMe Page
 test_contactme_page = ContactMePageTestCase()

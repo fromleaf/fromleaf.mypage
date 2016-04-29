@@ -5,7 +5,6 @@ from fromleaf_common.models.user import ExtraUserInfo, UserSNSInfo, MemberInfo
 from fromleaf_common.models.page import PageContainer
 from fromleaf_myskill.models import MySkillPage, SkillSet
 
-USER_EMAIL = 'fromleaf@gmail.com'
 
 class MySkillPageTestCase(TestCase):
     

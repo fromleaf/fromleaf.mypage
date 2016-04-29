@@ -1,4 +1,4 @@
-{% extends "base_with_pageinfo.html" %}
+{% extends "base.html" %}
 
 <head>
     <title>{% block title %}History{% endblock title %}</title>
@@ -6,16 +6,23 @@
 
 
 {% block blog-main %}
-<div class="error_message">
+
+
+
+<div class="blog-post">
+	<div class="jumbotron">
+		<h1>{{ page_info.name }}</h1>
+		<p>{{ page_info.description }}</p>
+	</div><!--/.jumbotron -->
+	
+	<div class="error_message">
 	{% if error_message %}
 		<ul>
 		<li>{{error_message}}</li>
 		</ul>
 	{% endif %}
-</div>
-
-
-<div class="blog-post">
+	</div>
+	
 	<div class="col-md-15">
 		{% for company in company_list %}
 		<hr class="featurette-divider">

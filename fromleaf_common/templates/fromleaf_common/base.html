@@ -36,19 +36,17 @@
 	<!-- The justified navigation menu is meant for single line per list item.
 	          Multiple lines will require custom code not provided by Bootstrap. -->	
 	<div class="main_menu_bar">
-		{% block main_menu_bar %}
 		<nav>
 		<ul class="nav nav-justified">
 			<li class="active"><a href="/">Home</a></li>
 	          	<li><a href="/aboutme">About Me</a></li>
 	          	<li><a href="/myskill">Skill</a></li>
 	          	<li><a href="/career">Career</a></li>
-	          	<li><a href="#">Studying</a></li>
+	          	<li><a href="/playing">Playing</a></li>
 	          	<li><a href="/contactme">Contact Me</a></li>
 	          	<li><a href="/admin" target="_blank">Admin</a></li>       
 		</ul>
 		</nav>
-	    {% endblock main_menu_bar %}
 	</div>
 	{% autoescape on %}
 	<div class="row">
@@ -59,7 +57,6 @@
 		
 		
 		<div class="col-md-offset-10 blog-sidebar">
-			{% block sidebar %}
 			<div class="sidebar-module sidebar-module-inset">
 				<h4>About</h4>
 				<p>{{ sidebar_user_introduce_comment.title }}<p><em>{{ sidebar_user_introduce_comment.comment }}</em></p></p>
@@ -71,11 +68,9 @@
 					<li>{{ sidebar_user_sns_info.sns_name|title }}:<a href="{{ sidebar_user_sns_info.sns_address }}{{ sidebar_user_sns_info.user_id }}" 
 						target="_blank"> {{ sidebar_user_sns_info.user_id }}</a></li>
 					{% endfor %}
-					<li>Blog: <a href="{{ sidebar_user_extra_info.blog_address }}" 
-						target="_blank">{{ sidebar_user_extra_info.blog_address }}</a></li>
+					<li>Blog: <a href="{{ sidebar_user_extra_info.blog_address }}" target="_blank">{{ sidebar_user_extra_info.blog_address }}</a></li>
 				</ol>
 			</div>
-			{% endblock sidebar %}
 		</div><!-- /.blog-sidebar -->
 	
 	</div><!-- /.row -->
@@ -85,8 +80,6 @@
 <footer class="col-md-2 col-md-offset-6 footer">
 	<p class="text-muted">Created by yoon(<a href="/contactme">{{ member_info.email }}</a>).</p>
 </footer><!-- /.footer -->
-	
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{% static 'jquery/jquery-2.2.3.min.js' %}"></script>
+
 </body>
 </html>

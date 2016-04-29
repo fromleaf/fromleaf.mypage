@@ -17,5 +17,3 @@ class AboutMeAdmin(admin.ModelAdmin):
     inlines = [SimpleCommentInline]
     
 admin.site.register(AboutMePage, AboutMeAdmin)
-# TODO: After finished development, below code have to be delete.
-# admin.site.register(SimpleComment)

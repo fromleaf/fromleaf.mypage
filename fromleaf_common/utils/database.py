@@ -8,7 +8,8 @@ from fromleaf_common.models.page import PageContainer
 from fromleaf_opening.models import OpeningPage
 from fromleaf_aboutme.models import AboutMePage
 from fromleaf_myskill.models import MySkillPage
-from fromleaf_career.models import CareerPage, Company, Project 
+from fromleaf_career.models import CareerPage, Company, Project
+from fromleaf_playing.models import PlayingPage 
 from fromleaf_contactme.models import ContactMePage
 
 logger = logging.getLogger(__name__)
@@ -41,6 +42,8 @@ def get_current_page_info(view_class, current_member_info):
         current_page_info = get_object_or_404(MySkillPage, page_container=current_page_container)
     elif view_class.__class__.__name__ in ['CareerView', 'CompanyDetailView']:
         current_page_info = get_object_or_404(CareerPage, page_container=current_page_container)
+    elif view_class.__class__.__name__ is 'PlayingView':
+        current_page_info = get_object_or_404(PlayingPage, page_container=current_page_container)
     elif view_class.__class__.__name__ is 'ContactMeView':
         current_page_info = get_object_or_404(ContactMePage, page_container=current_page_container)
     

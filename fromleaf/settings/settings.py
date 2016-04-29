@@ -45,9 +45,9 @@ INSTALLED_APPS = [
     'fromleaf_aboutme',
     'fromleaf_myskill',
     'fromleaf_career',
-    'fromleaf_studying',
+    'fromleaf_playing',
+    'fromleaf_playing.darly',
     'fromleaf_contactme',
-    'darly',
 ]
 
 MIDDLEWARE_CLASSES = [

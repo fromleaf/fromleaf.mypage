@@ -17,5 +17,3 @@ class OpeningAdmin(admin.ModelAdmin):
     inlines = [SimpleCommentInline]
     
 admin.site.register(OpeningPage, OpeningAdmin)
-# TODO: After finished development, below code have to be delete.
-# admin.site.register(SimpleComment)
