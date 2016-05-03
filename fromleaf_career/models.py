@@ -5,6 +5,7 @@ from unidecode import unidecode
 from django.db import models
 
 from fromleaf_common.models.page import PageContainer
+from fromleaf_common.models.user import MemberInfo
 
 def get_upload_to(instance, filename):
     # Dumb proxy to instance method.
@@ -62,6 +63,12 @@ class Company(models.Model):
                                       )
     created_at = models.DateTimeField(auto_now_add=True)
     
+    
+    member_info = models.ForeignKey(
+                              MemberInfo,
+                              on_delete=models.CASCADE,
+                              null=True
+                              )
     career_page = models.ForeignKey(
                               CareerPage,
                               on_delete=models.CASCADE,

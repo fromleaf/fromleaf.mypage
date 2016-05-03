@@ -96,3 +96,79 @@ def get_current_user_company_info(current_member_info):
 def get_current_project_list(current_company):
     project_list = Project.objects.filter(company=current_company).order_by('-finished_date')
     return project_list
+
+
+class UserData():
+    
+    def __init__(self, email):
+        self._email = email
+        self.set_member_info()
+        self.set_extra_user_info()
+        self.set_user_education_info()
+        self.set_user_sns_list()
+    
+    def set_member_info(self):
+        self._member_info = get_object_or_404(MemberInfo, email=self._email)
+        
+    def set_extra_user_info(self):
+        self._extra_user_info = get_object_or_404(
+                                                  ExtraUserInfo, 
+                                                  member_info=self._member_info
+                                                  ) 
+    
+    def set_user_education_info(self):
+        try:
+            self._user_education_info = Education.objects.filter(extra_user_info=self._extra_user_info)
+        except Education.DoesNotExist:
+            raise Http404('Education matches the given query.')
+    
+    def set_user_sns_list(self):
+        self._user_sns_list = UserSNSInfo.objects.filter(extra_user_info=self._extra_user_info)    
+    
+    def get_member_info(self):
+        return self._member_info
+    
+    def get_extra_user_info(self):
+        return self._extra_user_info
+    
+    def get_user_education_info(self):
+        return self._user_education_info
+     
+    def get_user_sns_list(self):
+        return self._user_sns_list
+
+class CompanyData():
+    
+    def __init__(self, email):
+        self._email = email
+        self._user_data = UserData(email)
+        self._project_list = []
+        self.set_company_list()
+        self.set_project_all(self._company_list)
+        
+    def set_company_list(self):
+        try:
+            self._company_list = Company.objects.filter(member_info=self._user_data.get_member_info())
+        except Company.DoesNotExist:
+            raise Http404('Company matches the given query.')
+    
+    def set_project_all(self, company_list):
+        if company_list is not None:
+            for _company in company_list:
+                _project_list = Project.objects.filter(company=_company).order_by('-finished_date')
+                self._project_list.append(_project_list)
+        else:
+            pass
+        
+    def get_company_list(self):
+        return self._company_list
+        
+    def get_project_all(self):
+        return self._project_list
+    
+    def get_project_list_of_company(self, _company):
+        try:
+            project_list = Project.objects.filter(company=_company).order_by('-finished_date')
+        except Company.DoesNotExist:
+            raise Http404('Company matches the given query.')
+        return project_list

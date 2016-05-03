@@ -13,8 +13,11 @@ class CompaynInline(admin.StackedInline):
     extra = 1
 
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description', 'created_at']
+    list_display = ['name', 'description', 'get_email', 'created_at']
     inlines = [ProjectInline]
+    
+    def get_email(self, obj):
+        return obj.member_info.email
 
             
 class CareerAdmin(admin.ModelAdmin):

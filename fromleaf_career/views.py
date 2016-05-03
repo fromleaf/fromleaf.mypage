@@ -1,12 +1,10 @@
 from django.shortcuts import render
+from django.conf import settings
 
 from fromleaf_common.utils import database as db
 from fromleaf_common.views import ListCommonView, DetailCommonView
 from fromleaf_career.models import Company, Project
 
-
-# TEMP_DATA: 나중에 지워야 함.
-USER_EMAIL = 'fromleaf@gmail.com'
 
 class CareerView(ListCommonView):
     
@@ -14,7 +12,7 @@ class CareerView(ListCommonView):
     context_object_name = 'company_list'
     
     def get_queryset(self):
-        current_member_info = db.get_current_member_info(USER_EMAIL)
+        current_member_info = db.get_current_member_info(settings.USER_EMAIL)
         current_page_info = db.get_current_page_info(self, current_member_info)
         return Company.objects.filter(career_page=current_page_info)
     

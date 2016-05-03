@@ -39,7 +39,8 @@ class CareerPageTestCase(TestCase):
                                         + '갖춰야 하는 인성을 배울 수 있었던 시간이었습니다. 이러한 장점에도 회사를 그만둔 것은 계속 이곳에 있으면 편안함에 빠져버릴 것 같은 '
                                         + '두려움 비슷한 감정을 느꼈습니다. 그래서 마지막 프로젝트를 마무리하고 회사를 그만두게 되었습니다.',
                                         company_image='photos/company/alticast_logo.png',
-                                        career_page=current_career_page 
+                                        career_page=current_career_page,
+                                        member_info=current_member_info 
                                         )
         acriil = self.insert_company(
                                       name='Acriil',
@@ -53,7 +54,8 @@ class CareerPageTestCase(TestCase):
                                       + '신규 서비스를 기획하고, 설계하고, 구현하고, 테스트하고, 릴리즈 하는 과정 전체를 배웠습니다. 또한 자신의 의견을 표현하는 법, '
                                       + '실제 수업 시간과 책을 통해 배운 것들을 해볼 수 있었던 좋은 기회였습니다.',
                                       company_image='photos/company/acriil_logo.png',
-                                      career_page=current_career_page
+                                      career_page=current_career_page,
+                                      member_info=current_member_info
                                       )
         ibm = self.insert_company(
                                    name='한국IBM',
@@ -65,7 +67,8 @@ class CareerPageTestCase(TestCase):
                                    + '그리고 대학교 4년이라는 시간 동안 배운 것들(개발, 개발과정, 문서화 등)을 직접 해볼 수 있었습니다. 그렇게 대학생활 중 가장 점수가 '
                                    + '좋았던 2등을 하는 성적을 받고, 입사 제안도 받았습니다. 그러나 조금 더 유연한 곳에서 개발 경험을 쌓고 싶어서 취업 준비생이 되었습니다.',
                                    company_image='photos/company/ibm_logo.png',
-                                   career_page=current_career_page
+                                   career_page=current_career_page,
+                                   member_info=current_member_info
                                    )
     
     def insert_project(self, **kwargs):

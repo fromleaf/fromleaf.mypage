@@ -142,9 +142,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 USER_EMAIL = 'fromleaf@gmail.com'
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'localhost'
-# EMAIL_PORT = '1025'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = USER_EMAIL
 EMAIL_HOST_PASSWORD = 'vftsvvrssbgywsmy'
@@ -162,20 +159,56 @@ LOGGING = {
         },
     },
     'handlers': {
-        'file': {
+        'mypage_handler': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'fromleaf_logs/logfile'),
+            'filename': os.path.join(BASE_DIR, 'fromleaf_logs/mypage.log'),
+            'formatter': 'verbose',
+        },
+        'app_handler': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'fromleaf_logs/app.log'),
+            'formatter': 'verbose',
+        },
+        'database_handler': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'fromleaf_logs/database.log'),
             'formatter': 'verbose',
         },
     },
     'loggers': {
-        'darly': {
-            'handlers': ['file'],
+        'fromleaf_aboutme': {
+            'handlers': ['mypage_handler'],
+            'level': 'DEBUG',
+        },
+        'fromleaf_career': {
+            'handlers': ['mypage_handler'],
             'level': 'DEBUG',
         },
         'fromleaf_common': {
-            'handlers': ['file'],
+            'handlers': ['mypage_handler'],
+            'level': 'DEBUG',
+        },
+        'fromleaf_common.utils.database': {
+            'handlers': ['database_handler'],
+            'level': 'DEBUG',
+        },
+        'fromleaf_contactme': {
+            'handlers': ['mypage_handler'],
+            'level': 'DEBUG',
+        },
+        'fromleaf_myskill': {
+            'handlers': ['mypage_handler'],
+            'level': 'DEBUG',
+        },
+        'fromleaf_playing.darly': {
+            'handlers': ['app_handler'],
+            'level': 'DEBUG',
+        },
+        'fromleaf_playing.ourhockey': {
+            'handlers': ['app_handler'],
             'level': 'DEBUG',
         },
     },
