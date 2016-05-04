@@ -21,6 +21,5 @@ from fromleaf_career import views
 
 urlpatterns = [
     url(r'^$', views.CareerView.as_view(), name='career_page'),
-    url(r'^company_detail/(?P<pk>\d+)/$', views.CompanyDetailView.as_view(), name='company_detail'),
-    url(r'^project_detail/(?P<pk>\d+)/$', views.ProjectDetailView.as_view(), name='project_detail'),
+    url(r'^company_detail/(?P<pk>\d+)/$', views.CompanyDetailView.as_view(), name='company_detail')
 ]

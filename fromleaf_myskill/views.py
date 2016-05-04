@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.conf import settings
 
 from fromleaf_common.utils import database as db
+from fromleaf_common.utils.database import UserData
 from fromleaf_common.views import ListCommonView
 from fromleaf_myskill.models import SkillSet
 
@@ -12,8 +13,9 @@ class MySkillView(ListCommonView):
     context_object_name = 'skill_list'
     
     def get_queryset(self):
-        current_member_info = db.get_current_member_info(settings.USER_EMAIL)
-        current_page_info = db.get_current_page_info(self, current_member_info)
+        user_data = UserData(settings.USER_EMAIL)
+        current_page_info = db.get_current_page_info(self, user_data.get_member_info())
+        
         return SkillSet.objects.filter(my_skill_page=current_page_info)
     
     def get_context_data(self, **kwargs):
