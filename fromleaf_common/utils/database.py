@@ -13,22 +13,6 @@ from fromleaf_playing.models import PlayingPage
 from fromleaf_contactme.models import ContactMePage
 
 logger = logging.getLogger(__name__)
-
-def get_current_member_info(currnet_user_email):
-    return get_object_or_404(MemberInfo, email=currnet_user_email)
- 
-    
-def get_current_user_extra_info(current_member_info):
-    return get_object_or_404(ExtraUserInfo, member_info=current_member_info)
-
-def get_current_user_education_info(current_member_info):
-    current_extra_user_info = get_current_user_extra_info(current_member_info)
-    return Education.objects.filter(extra_user_info=current_extra_user_info)
- 
-def get_current_user_sns_list_info(user_member_info):
-    current_user_extra_info = get_current_user_extra_info(user_member_info)
-    return UserSNSInfo.objects.filter(extra_user_info=current_user_extra_info)
-
     
 def get_current_page_info(view_class, current_member_info):
     current_page_container = get_object_or_404(PageContainer, member_info=current_member_info)
@@ -76,26 +60,6 @@ def get_simple_comment_list(view_class, current_member_info):
         simple_comment_list = [""];
     
     return simple_comment_list
-
-
-def get_comment_list_for_sidebar(current_member_info):
-    current_page_container = get_object_or_404(PageContainer, member_info=current_member_info)
-    
-    current_aboutme_page = AboutMePage.objects.filter(page_container=current_page_container)
-    comment_list = SimpleComment.objects.filter(aboutme_page=current_aboutme_page)
-    
-    return comment_list
-
-def get_current_user_company_info(current_member_info):
-    current_page_container = get_object_or_404(PageContainer, member_info=current_member_info)
-    current_career_page = CareerPage.objects.filter(page_container=current_page_container)
-    company_list = Company.objects.filter(career_page=current_career_page)
-    
-    return company_list
-
-def get_current_project_list(current_company):
-    project_list = Project.objects.filter(company=current_company).order_by('-finished_date')
-    return project_list
 
 
 class UserData():

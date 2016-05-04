@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.conf import settings
 
 from fromleaf_common.utils import database as db
-from fromleaf_common.views import TemplateCommonView
 from fromleaf_common.utils.database import UserData, CompanyData
+from fromleaf_common.views import TemplateCommonView
 
 class AboutMeView(TemplateCommonView):
     
