@@ -1,0 +1,32 @@
+{% extends "base_player.html" %}
+
+{% block content %}
+
+<h1>Player Update</h1>
+
+{% if error_message %}
+	<ul>
+	<li>{{error_message}}</li>
+	</ul>
+{% endif %}
+
+<form method="GET" action="{% url 'playermanager:player_update' %}" enctype="multipart/form-data">
+	<li>Input Player Name or ID Number</li>
+    {% csrf_token %}
+    {{search_form.as_p}}
+    <p>
+        <input type="submit" value="Search Player" />
+    </p>
+</form>
+<h3>------------------------------------------------------------------------------------------------------------------------</h3>
+<form method="POST" action="{% url 'playermanager:player_update' %}" enctype="multipart/form-data">	
+	{% if player_info_form %}
+    	{% csrf_token %}
+		{{player_info_form.as_p}}
+	<p>
+        <input type="submit" value="Update Player" />
+    </p>
+	{% endif %}
+</form>
+
+{% endblock content %}

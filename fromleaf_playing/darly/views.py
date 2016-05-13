@@ -9,4 +9,4 @@ class DarlyView(ListCommonView):
     context_object_name = 'darly_photo_list'
     
     def get_queryset(self):
-        return DarlyPhoto.objects.all()
+        return DarlyPhoto.objects.using('darly').all()

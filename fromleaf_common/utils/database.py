@@ -26,7 +26,9 @@ def get_current_page_info(view_class, current_member_info):
         current_page_info = get_object_or_404(MySkillPage, page_container=current_page_container)
     elif view_class.__class__.__name__ in ['CareerView', 'CompanyDetailView']:
         current_page_info = get_object_or_404(CareerPage, page_container=current_page_container)
-    elif view_class.__class__.__name__ is 'PlayingView':
+    elif view_class.__class__.__name__ in ['PlayingView', 'DarlyView']:
+        current_page_info = get_object_or_404(PlayingPage, page_container=current_page_container)
+    elif view_class.__class__.__name__ in ['OurHockeyView', 'PlayerListView']:
         current_page_info = get_object_or_404(PlayingPage, page_container=current_page_container)
     elif view_class.__class__.__name__ is 'ContactMeView':
         current_page_info = get_object_or_404(ContactMePage, page_container=current_page_container)

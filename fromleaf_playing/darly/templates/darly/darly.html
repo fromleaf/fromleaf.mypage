@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
-{% block blog-main %}
+<head>
+    <title>{% block title %}Darly Page{% endblock title %}</title>
+</head>
 
-<h1>Darly Photos</h1>
+{% block blog-main %}
 
 {% if error_message %}
 	<ul>
@@ -11,6 +13,11 @@
 {% endif %}
 
 {% if darly_photo_list %}
+	<div class="jumbotron">
+		<h1>{{ page_info.name }}</h1>
+		<p>{{ page_info.description }}</p>
+	</div><!--/.jumbotron -->
+
 	{% for darly_photo in darly_photo_list %}
 		<img src="{{ darly_photo.photo.url }}" alt="darly_photo" class="img-thumbnail">
 	{% empty %}

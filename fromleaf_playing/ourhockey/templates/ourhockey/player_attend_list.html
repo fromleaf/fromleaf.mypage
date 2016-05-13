@@ -1,0 +1,35 @@
+{% extends "base_player.html" %}
+
+{% block content %}
+
+<h1>Player Attend List</h1>
+
+{% if error_message %}
+	<ul>
+	<li>{{error_message}}</li>
+	</ul>
+{% endif %}
+
+{% if player_attend_list %}
+	{% for player in player_attend_list %}
+		{% if player.attend == True %}
+			<input type="checkbox" name="attend" value="{{ player.id }}" checked="checked"/>
+		{% else %}
+			<input type="checkbox" name="attend" value="{{ player.id }}"/>
+		{% endif %}
+		<a href="{% url 'playermanager:player_detail' player.id %}">
+		{% if player.profile_image %}
+			{% load staticfiles %}
+			<img src="{% static player.profile_image %}" alt="" width="150" height="150"/>
+		{% endif %}
+   		{{ player.name }}</br>
+   		</a>
+	{% empty %}
+		<li>Sorry, no Player in this list.</li></br>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No players are available.</p>
+{% endif %}
+
+{% endblock content %}

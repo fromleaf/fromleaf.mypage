@@ -76,6 +76,7 @@ class ExtraUserInfo(models.Model):
     member_info = models.OneToOneField(
                               MemberInfo,
                               on_delete=models.CASCADE,
+                              null=True
                               )
     
 
@@ -140,5 +141,6 @@ class Education(models.Model):
     extra_user_info = models.ForeignKey(
                                         'ExtraUserInfo',
                                         on_delete=models.CASCADE,
+                                        null=True
                                     )
                                                             

@@ -3,10 +3,20 @@
 help:
 	@echo "insertuser - execute manage.py shell < insert_user_data.py"
 	@echo "==============================================================================="
-	@echo "migrate - makemigrations and migrate"
+	@echo "migrate - execute manage migrate"
+	@echo "migrateall - execute manage migrate about all database"
+	@echo "makemigrations - execute manage makemigrations"
+	@echo "supermigrate - execute manage makemigrations and migrate"
+	@echo "removemigrations - remove migration folders"
 	@echo "clean - remove migrations folders and excute makemigrations and migrate"
 	@echo "superclean - remove migrations folders and excute makemigrations and migrate. Create Super User"
 	@echo "==============================================================================="
+
+migrateall:
+	@echo manage migrate all database
+	manage migrate
+	manage migrate --database=darly
+	manage migrate --database=ourhockey
 
 insertuser:
 	@echo "if you want to insert user data to database, you have to execute superclean"
@@ -14,35 +24,41 @@ insertuser:
 	@echo "insert user data to database"
 	python3 manage.py shell < insert_user_data.py
 
-migrate:
+makemigrations:
 	@echo "Start makemigrations"
 	python3 manage.py makemigrations
-	@echo "==============================================================================="
+
+migrate:
 	@echo "Start migrate"
 	python3 manage.py migrate
+
+supermigrate:
+	@echo "==============================================================================="
+	make makemigrations
+	@echo "==============================================================================="
+	make migrate
+
+removemigrations:
+	@echo "Remove migrations folders and migrations files"
+	rm -f fromleaf_*/migrations/000*
+	rm -f fromleaf_playing/darly/migrations/000*
+	rm -f fromleaf_playing/ourhockey/migrations/000*
 
 clean:
-	@echo "Remove migrations folders and migrations files"
-	rm -f fromleaf_*/migrations/000*
-	rm -f darly/migrations/000*
+	make removemigrations
 	@echo "==============================================================================="
-	@echo "Start makemigrations"
-	python3 manage.py makemigrations
+	make makemigrations
 	@echo "==============================================================================="
-	@echo "Start migrate"
-	python3 manage.py migrate
+	make migrate
 
 superclean:
-	@echo "Remove migrations folders and migrations files"
-	rm -f fromleaf_*/migrations/000*
-	rm -f darly/migrations/000*
-	@echo "Remove db.sqlite3"
-	rm -f db.sqlite3
+	make clean
+	@echo "Remove default.db.sqlite3"
+	rm -f database/default.db.sqlite3
 	@echo "==============================================================================="
-	@echo "Start makemigrations"
-	python3 manage.py makemigrations
-	@echo "Start migrate"
-	python3 manage.py migrate
+	make makemigrations
+	@echo "==============================================================================="
+	make migrate
 	@echo "==============================================================================="
 	@echo "Create Super User - Default: yoon"
 	python3 manage.py createsuperuser --username yoon --email test@test.com

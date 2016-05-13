@@ -16,5 +16,6 @@ class ContactMePage(models.Model):
     page_container = models.OneToOneField(
                                           PageContainer,
                                           on_delete=models.CASCADE,
+                                          null=True
                                           )
     created_at = models.DateTimeField(auto_now_add=True)    

@@ -17,5 +17,6 @@ class PageContainer(models.Model):
     member_info = models.OneToOneField(
                               MemberInfo,
                               on_delete=models.CASCADE,
+                              null=True
                               )
     title = models.CharField(max_length=20, default='page_container')

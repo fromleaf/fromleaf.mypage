@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'fromleaf_career',
     'fromleaf_playing',
     'fromleaf_playing.darly',
+    'fromleaf_playing.ourhockey',
     'fromleaf_contactme',
 ]
 
@@ -85,13 +86,22 @@ WSGI_APPLICATION = 'fromleaf.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
+DATABASE_DIR = os.path.join(BASE_DIR, 'database')
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': join(BASE_DIR, 'db.sqlite3'),
+        'NAME': join(DATABASE_DIR, 'default.db.sqlite3'),
+    },
+    'darly': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': join(DATABASE_DIR, 'darly.db.sqlite3'),
+    },
+    'ourhockey': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': join(DATABASE_DIR, 'ourhockey.db.sqlite3'),
     }
 }
+DATABASE_ROUTERS = ['fromleaf_common.db_router.DefaultRouter']
 
 
 # Password validation

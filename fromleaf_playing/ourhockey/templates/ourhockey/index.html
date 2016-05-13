@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 <head>
-    <title>{% block title %}Playing Page{% endblock title %}</title>
+    <title>{% block title %}OurHockey Page{% endblock title %}</title>
 </head>
-
 
 {% block blog-main %}
 <div class="jumbotron">
@@ -20,8 +19,8 @@
 </div>
 
 <div class="blog-post">
-	{% for app_name in app_list %}
-		<li><a href="{{ app_name }}">{{ app_name }}</a></li>
+	{% for menu in ourhockey_menu_list %}
+		<li><a href="{{ menu }}">{{ menu }}</a></li>
 	{% endfor %}
 </div><!-- /.blog-post -->
 

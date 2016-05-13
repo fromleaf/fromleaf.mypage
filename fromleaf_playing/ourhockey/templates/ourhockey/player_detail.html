@@ -1,0 +1,23 @@
+{% extends "base_player.html" %}
+
+{% block content %}
+
+<h1>{{ player.name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<li>
+{% if player.profile_image %}
+{% load staticfiles %}
+	<img src="{% static player.profile_image %}" alt="" width="200" height="200"/>
+{% endif %}
+</li>
+<li><label>{{ player.name }}</label></br></li>
+<li><label>{{ player.back_number }}</label></br></li>
+<li><label>{{ player.duty }}</label></br></li>
+<li><label>{{ player.position }}</label></br></li>
+<li><label>{{ player.memeber_level }}</label></br></li>
+<li><label>{{ player.state }}</label></br></li>
+
+
+{% endblock content %}

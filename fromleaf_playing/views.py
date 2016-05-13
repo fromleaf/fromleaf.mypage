@@ -7,5 +7,5 @@ class PlayingView(TemplateCommonView):
     
     def get_context_data(self, **kwargs):
         context = super(PlayingView, self).get_context_data(**kwargs)
-        
+        context['app_list'] = ['darly', 'ourhockey']
         return context
