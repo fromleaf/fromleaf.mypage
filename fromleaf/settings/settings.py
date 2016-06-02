@@ -142,13 +142,6 @@ USE_L10N = True
 USE_TZ = True
 
 
-if "MYAPP_IS_ON_AWS" in os.environ:
-    AWS_ACCESS_KEY_ID = "AKIAJ6UQIFX7JPEITSSQ"
-    AWS_SECRET_ACCESS_KEY = "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"
-    # AWS Optional Settings
-    AWS_S3_SECURE_URLS = False
-    AWS_QUERYSTRING_AUTH = False
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_URL = '/static/'
