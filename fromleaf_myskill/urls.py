@@ -20,5 +20,5 @@ from django.conf.urls import patterns, url
 from fromleaf_myskill import views
 
 urlpatterns = [
-    url(r'^$', views.MySkillView.as_view(), name='myskill_page'),
+    url(r'^$', views.MySkillView.as_view(), name='myskill_main'),
 ]

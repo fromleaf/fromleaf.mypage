@@ -18,7 +18,7 @@ from django.conf.urls import patterns, url, include
 from fromleaf_playing import views
 
 urlpatterns = [
-    url(r'^$', views.PlayingView.as_view(), name='playing_page'),
+    url(r'^$', views.PlayingView.as_view(), name='playing_main'),
     url(r'^darly/', include('fromleaf_playing.darly.urls', namespace='darly')),
     url(r'^ourhockey/', include('fromleaf_playing.ourhockey.urls', namespace='ourhockey')),
 ]

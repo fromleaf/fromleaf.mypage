@@ -3,11 +3,11 @@ from django.conf import settings
 
 from fromleaf_common.utils import database as db
 from fromleaf_common.utils.database import UserData, CompanyData
-from fromleaf_common.views import ListCommonView, DetailCommonView
+from fromleaf_common.views import CommonListView, CommonDetailView
 from fromleaf_career.models import Company, Project
 
 
-class CareerView(ListCommonView):
+class CareerView(CommonListView):
     
     template_name = 'fromleaf_career/career.html'
     context_object_name = 'company_list'
@@ -22,7 +22,7 @@ class CareerView(ListCommonView):
         return context
         
 
-class CompanyDetailView(DetailCommonView):
+class CompanyDetailView(CommonDetailView):
     template_name = 'fromleaf_career/company.html'
     model = Company
     context_object_name = 'company'

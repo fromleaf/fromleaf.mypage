@@ -1,11 +1,6 @@
 from django.shortcuts import render
 
-from fromleaf_common.views import TemplateCommonView
+from fromleaf_playing.common.views import PlayingCommonTemplateView
 
-class PlayingView(TemplateCommonView):
+class PlayingView(PlayingCommonTemplateView):
     template_name = 'fromleaf_playing/playing.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super(PlayingView, self).get_context_data(**kwargs)
-        context['app_list'] = ['darly', 'ourhockey']
-        return context

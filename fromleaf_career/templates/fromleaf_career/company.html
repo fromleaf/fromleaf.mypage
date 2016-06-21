@@ -5,23 +5,25 @@
 </head>
 
 
+{% block page-information %}
+<div class="jumbotron">
+    <h1>{{ page_info.name }}</h1>
+    <p>{{ page_info.description }}</p>
+</div><!--/.jumbotron -->
+
+<div class="error_message">
+    {% if error_message %}
+    <ul>
+        <li>{{error_message}}</li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock page-information %}
+
 {% block blog-main %}
 
 <div class="blog-post">
 	<div class="col-md-15">
-		<div class="jumbotron">
-			<h1>{{ page_info.name }}</h1>
-			<p>{{ page_info.description }}</p>
-		</div><!--/.jumbotron -->
-		
-		<div class="error_message">
-			{% if error_message %}
-			<ul>
-				<li>{{error_message}}</li>
-			</ul>
-			{% endif %}
-		</div><!--/.error_message -->
-		
 		<hr class="featurette-divider">
 		<div class="row company">
 			<div class="col-md-8">

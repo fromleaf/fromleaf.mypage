@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "fromleaf_playing/playing_base.html" %}
 
 <head>
     <title>{% block title %}Playing Page{% endblock title %}</title>
@@ -6,23 +6,6 @@
 
 
 {% block blog-main %}
-<div class="jumbotron">
-	<h1>{{ page_info.name }}</h1>
-	<p>{{ page_info.description }}</p>
-</div><!--/.jumbotron -->
 
-<div class="error_message">
-	{% if error_message %}
-		<ul>
-		<li>{{error_message}}</li>
-		</ul>
-	{% endif %}
-</div>
-
-<div class="blog-post">
-	{% for app_name in app_list %}
-		<li><a href="{{ app_name }}">{{ app_name }}</a></li>
-	{% endfor %}
-</div><!-- /.blog-post -->
 
 {% endblock blog-main %}

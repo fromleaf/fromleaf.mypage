@@ -26,20 +26,31 @@ BASE_DIR = dirname(dirname(dirname(abspath(__file__))))
 SECRET_KEY = 'g^a!a^h%($0xo&tedq@x4k5(n6*5^5pc-dfnu6-^sld5@=7_b('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
+if 'APP_IS_ON_AWS' in os.environ:
+	DEBUG = False
+	ALLOWED_HOSTS = ['.elasticbeanstalk.com']
+	APP_IS_ON = 'AWS'
+elif 'APP_IS_ON_AZURE' in os.environ:
+	DEBUG = False
+	ALLOWED_HOSTS = ['*']
+	APP_IS_ON = 'AZURE'
+else:
+	DEBUG = True
+	ALLOWED_HOSTS = ['*']
+	APP_IS_ON = 'DEV'
 
 
 # Application definition
-
 INSTALLED_APPS = [
+	# Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+	# My Apps
 	'fromleaf_common',
     'fromleaf_opening',
     'fromleaf_aboutme',
@@ -51,6 +62,13 @@ INSTALLED_APPS = [
     'fromleaf_contactme',
 ]
 
+if APP_IS_ON is 'AWS':
+	INSTALLED_APPS += [
+		# Third party
+		'storages',
+	]
+
+
 MIDDLEWARE_CLASSES = [
 	'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -60,7 +78,9 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_ajax.middleware.AJAXMiddleware',
 ]
+
 
 ROOT_URLCONF = 'fromleaf.urls'
 
@@ -97,8 +117,12 @@ DATABASES = {
         'NAME': join(DATABASE_DIR, 'darly.db.sqlite3'),
     },
     'ourhockey': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': join(DATABASE_DIR, 'ourhockey.db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ourhockey_schema',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 DATABASE_ROUTERS = ['fromleaf_common.db_router.DefaultRouter']
@@ -106,7 +130,6 @@ DATABASE_ROUTERS = ['fromleaf_common.db_router.DefaultRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -125,7 +148,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 # TIME_ZONE = 'UTC'
@@ -137,17 +159,24 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_URL = '/static/'
+
 if DEBUG:
-    STATICFILES_DIRS = [
-         os.path.join(BASE_DIR, 'static'),
-    ]
+	STATIC_ROOT = STATIC_URL
+	STATICFILES_DIRS = [
+		# if you want to set other STATICFILE_DIRS, you have to set here.
+		# However, you have to set the other STATIC_ROOR path
+		# ex) os.path.join(BASE_DIR, 'somewhere')
+		os.path.join(BASE_DIR, 'static'),
+		# ourhockey static path
+		os.path.join(BASE_DIR, 'fromleaf_playing/ourhockey/static') 
+	]
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-
+	STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+	
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -160,8 +189,8 @@ EMAIL_USE_TLS = True
 
 # LOGGING
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
+	'version': 1,
+	'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
             'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",

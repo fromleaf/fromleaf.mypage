@@ -3,7 +3,7 @@ from django.conf import settings
 
 from fromleaf_common.utils import database as db
 from fromleaf_common.utils.database import UserData
-from fromleaf_common.views import TemplateCommonView
+from fromleaf_common.views import CommonTemplateView
 
 def comment_parser(comment):
     comment_dict = {}
@@ -15,7 +15,7 @@ def comment_parser(comment):
             
     return comment_dict
 
-class OpeningView(TemplateCommonView):
+class OpeningView(CommonTemplateView):
     
     template_name = 'fromleaf_opening/opening.html'
     

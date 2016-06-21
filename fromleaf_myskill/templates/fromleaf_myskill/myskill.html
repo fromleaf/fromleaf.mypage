@@ -4,22 +4,22 @@
 <title>{% block title %}My Skill {% endblock title %}</title>
 </head>
 
-
-{% block blog-main %}
-
+{% block page-information %}
 <div class="jumbotron">
-	<h1>{{ page_info.name }}</h1>
-	<p>{{ page_info.description }}</p>
+    <h1>{{ page_info.name }}</h1>
+    <p>{{ page_info.description }}</p>
 </div><!--/.jumbotron -->
 
 <div class="error_message">
-	{% if error_message %}
-	<ul>
-		<li>{{error_message}}</li>
-	</ul>
-	{% endif %}
+    {% if error_message %}
+    <ul>
+        <li>{{error_message}}</li>
+    </ul>
+    {% endif %}
 </div>
+{% endblock page-information %}
 
+{% block blog-main %}
 <div class="blog-post">
 	<div class="col-md-15">
 		{% if development_skill_list %}

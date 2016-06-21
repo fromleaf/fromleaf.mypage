@@ -20,6 +20,6 @@ from django.conf.urls import patterns, url
 from fromleaf_contactme import views
 
 urlpatterns = [
-    url(r'^$', views.ContactMeView.as_view(), name='contactme_page'),
-    url(r'^thanks/$', views.ContactMeView.as_view(), name='thanks_page'),
+    url(r'^$', views.ContactMeView.as_view(), name='contactme_main'),
+    url(r'^thanks/$', views.ContactMeView.as_view(), name='thanks'),
 ]

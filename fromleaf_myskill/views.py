@@ -3,11 +3,11 @@ from django.conf import settings
 
 from fromleaf_common.utils import database as db
 from fromleaf_common.utils.database import UserData
-from fromleaf_common.views import ListCommonView
+from fromleaf_common.views import CommonListView
 from fromleaf_myskill.models import SkillSet
 
 
-class MySkillView(ListCommonView):
+class MySkillView(CommonListView):
 
     template_name = 'fromleaf_myskill/myskill.html'
     context_object_name = 'skill_list'

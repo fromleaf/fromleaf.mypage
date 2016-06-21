@@ -1,0 +1,13 @@
+{% extends "fromleaf_playing/playing_base.html" %}
+
+<head>
+    <title>{% block title %}Darly Page{% endblock title %}</title>
+</head>
+
+{% block blog-main %}
+{% for darly_photo in darly_photo_list %}
+	<img src="{{ darly_photo.photo.url }}" alt="darly_photo" class="img-thumbnail">
+{% empty %}
+	<p>Sorry, no Darly Photos in this list.</p>
+{% endfor %}
+{% endblock blog-main %}

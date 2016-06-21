@@ -1,0 +1,41 @@
+
+help:
+	@echo "[insert data]"
+	@echo "\t insertuser - execute manage.py shell < insert_user_data.py"
+	@echo "[clean database file]"
+	@echo "\t "
+	@echo "[migrate]"
+	@echo "\t migrate - execute manage migrate"
+	@echo "\t migrateall - execute manage migrate about all database"
+	@echo "\t migrateothers - execute manage migrate about others database except default database"
+	@echo "\t makemigrations - execute manage makemigrations"
+	@echo "\t supermigrate - execute manage makemigrations and migrate"
+	@echo "\t removemigrations - remove migration folders"
+	@echo "\t clean - remove migrations folders and excute makemigrations and migrate"
+	@echo "\t superclean - remove migrations folders and excute makemigrations and"
+	@echo "\t==============================================================================="
+
+insert-user:
+	@echo "insert fromleaf application's user data to database"
+	python3 manage.py shell < insert_user_data.py
+
+migrate:
+	if $1
+	then
+	@echo "$1 application makemigrations and migrate"
+	python3 manage.py migrate --database=$1
+
+migrate-playing:
+	@echo "migrate fromleaf's others application makemigrations and migrate"
+	python3 manage.py makemigrations
+	python3 manage.py migrate
+	
+
+clean-database:
+	@echo "Remove database file"
+	rm -rf database/*.*.sqlite3
+
+clean-pyc:
+	find . -name '*.pyc' -exec rm -f {} +
+	find . -name '*.pyo' -exec rm -f {} +
+	find . -name '*~' -exec rm -f {} +

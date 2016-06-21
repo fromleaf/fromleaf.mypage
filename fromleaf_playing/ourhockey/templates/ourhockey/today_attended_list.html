@@ -1,0 +1,22 @@
+{% extends "fromleaf_playing/playing_base.html" %}
+
+<head>
+    <title>{% block title %}OurHockey > Player List Page{% endblock title %}</title>
+</head>
+
+{% block blog-main %}
+
+<div class="blog-post">
+	{% for attended in attended_list %}
+	<li>
+		{{ attended.member.duty }}
+		{{ attended.member.level }}
+		{{ attended.member.position }}
+		{{ attended.member.created_at }}
+	</li>
+	{% empty %}
+		<p>Sorry, no Attended Member in this list.</p>
+	{% endfor %}
+</div><!-- /.blog-post -->
+
+{% endblock blog-main %}

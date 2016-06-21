@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+<head>
+<title>{% block title %}Playing Base Page{% endblock title %}</title>
+</head>
+
+
+{% block page-information %}
+<div class="jumbotron">
+    <h1>{{ page_info.name }}</h1>
+    <p>{{ page_info.description }}</p>
+</div><!--/.jumbotron -->
+
+<div class="error_message">
+    {% if error_message %}
+    <ul>
+        <li>{{error_message}}</li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock page-information %}
+
+{% block sub-nav %}
+<div class="nav-playing">
+	<ul class="nav nav-pills">
+		<li role=presentation class=active>
+		<a href="{% url 'playing:playing_main' %}">Playing Home</a></li>
+		{% for playing_menu in playing_menu_list %}
+		<li role=presentation class=dropdown>
+		  <a class=dropdown-toggle data-toggle=dropdown href=# 
+		      role=button aria-haspopup=true
+		      aria-expanded=false> {{ playing_menu }} <span class=caret></span></a>
+		      <ul class=dropdown-menu>
+		      {% if playing_menu == "darly" %}
+			     <li><a href="{% url 'playing:darly:main' %}">Main</a></li>
+		      {% elif playing_menu == "ourhockey" %}
+		         <li><a href="{% url 'playing:ourhockey:member_list' %}">Member List</a></li>
+		         <li><a href="{% url 'playing:ourhockey:game_schedule' %}">Game Schedule</a></li>
+		         <li><a href="{% url 'playing:ourhockey:select_today_attend' %}">Select Today Attend</a></li>
+		         <li><a href="{% url 'playing:ourhockey:today_attended_list' %}">Today Attended List</a></li>
+		      {% endif %}
+			  </ul>
+		</li>
+		{% empty %}
+		 <li>Nothing Playing Menu List</li>
+		{% endfor %}
+	</ul>
+</div>
+<!-- /.nav-playing -->
+<hr class="featurette-divider">	
+{% endblock sub-nav %}

@@ -19,5 +19,5 @@ from fromleaf_playing.darly import views
 
 
 urlpatterns = [
-    url(r'^$', views.DarlyView.as_view(), name='darly_page'),
+    url(r'^main/$', views.DarlyView.as_view(), name='main'),
 ]

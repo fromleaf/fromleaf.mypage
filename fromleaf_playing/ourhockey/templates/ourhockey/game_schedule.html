@@ -1,0 +1,32 @@
+{% extends "fromleaf_playing/playing_base.html" %}
+
+<head>
+    <title>{% block title %}OurHockey Page > Game Schedule{% endblock title %}</title>
+</head>
+
+{% block blog-main %}
+<div class="blog-post">
+    <div class="field_wrapper" id="gameday">
+    {% for gameday in gameday_list %}
+    <li>
+    <strong>{{ gameday.game_day|date:"Y-m-d" }}</strong> - 
+    <strong>{{ gameday.game_type }}</strong>
+    </li>
+    {% endfor %}
+    </div>
+    
+	 <form method="POST" id="post_gameday_form">
+		 {% csrf_token %}
+		 <div class="field_wrapper" id="the_post">
+		   {{ form.game_day }}
+		   {{ form.game_type }}
+		 </div>
+		 <div id="results"></div>
+		 <input type="submit" value="Post">
+	 </form>
+</div><!-- /.blog-post -->
+
+{% load staticfiles %}
+<script src="{% static 'js/ajax.js' %}"></script>
+
+{% endblock blog-main %}

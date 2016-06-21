@@ -5,6 +5,7 @@ help:
 	@echo "==============================================================================="
 	@echo "migrate - execute manage migrate"
 	@echo "migrateall - execute manage migrate about all database"
+	@echo "migrateothers - execute manage migrate about others database except default database"
 	@echo "makemigrations - execute manage makemigrations"
 	@echo "supermigrate - execute manage makemigrations and migrate"
 	@echo "removemigrations - remove migration folders"
@@ -12,11 +13,24 @@ help:
 	@echo "superclean - remove migrations folders and excute makemigrations and migrate. Create Super User"
 	@echo "==============================================================================="
 
+
+pyc-clean:
+	@echo *.pyc file remove
+	find . -name '*.pyc' -delete
+
 migrateall:
 	@echo manage migrate all database
-	manage migrate
-	manage migrate --database=darly
-	manage migrate --database=ourhockey
+	python3 manage.py migrate
+	python3 manage.py migrate --database=darly
+	python3 manage.py migrate --database=ourhockey
+
+migrateothers:
+	@echo "Remove others database file"
+	rm -f database/darly.db.sqlite3
+	rm -f database/ourhockey.db.sqlite3
+	@echo manage migrate all database
+	python3 manage.py migrate --database=darly
+	python3 manage.py migrate --database=ourhockey
 
 insertuser:
 	@echo "if you want to insert user data to database, you have to execute superclean"

@@ -1,0 +1,37 @@
+{% extends "fromleaf_playing/playing_base.html" %}" %}
+
+<head>
+    <title>{% block title %}OurHockey > Player List Page{% endblock title %}</title>
+</head>
+
+
+{% block blog-main %}
+
+{% load staticfiles %}
+<script src="{% static 'js/ajax.js' %}"></script>
+
+<div class="blog-post">
+    <form action="{% url 'playing:ourhockey:selected_today_attend' %}" method="post">
+    
+    {% csrf_token %}
+	{% for member in select_member_list %}
+	<li>
+	    {% if member.attended.attended == True %}
+		<input type="checkbox" name="attend" value="{{ member.id }}" checked="checked"/>
+		{% else %}
+		   <input type="checkbox" name="attend" value="{{ member.id }}"/>
+		{% endif %}
+		{{ member.member.duty }}
+        {{ member.member.level }}
+        {{ member.member.position }}
+        {{ member.member.created_at }} /
+        {{ member.attended.attended_date }}	
+	</li>
+	{% empty %}
+		<p>Sorry, no Player in this list.</p>
+	{% endfor %}
+	<input type="submit" value="Attend"/>
+    </form>
+</div><!-- /.blog-post -->
+
+{% endblock blog-main %}

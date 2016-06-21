@@ -19,6 +19,16 @@ from fromleaf_playing.ourhockey import views
 
 
 urlpatterns = [
-    url(r'^$', views.OurHockeyView.as_view(), name='ourhockey_page'),
-    url(r'^player_list/$', views.PlayerListView.as_view(), name='player_list_page'),
+    url(r'^$', views.OurHockeyView.as_view(), name='ourhockey_main'),
+    url(r'^member_list/$', views.MemberListView.as_view(), name='member_list'),
+    url(r'^game_schedule/$', views.GameScheduleListView.as_view(), name='game_schedule'),
+    url(r'^game_schedule/updated_gameday/$', views.GameScheduleListView.as_view(), name='updated_gameday'),
+#     url(r'^game_schedule/updated_gameday/$', views.updated_gameday, name='updated_gameday'),
+    url(r'^select_today_attend/$', views.SelectTodayAttendListView.as_view(), name='select_today_attend'),
+    url(r'^selected_today_attend/$', views.SelectedTodayAttendListView.as_view(), name='selected_today_attend'),
+    url(r'^today_attended_list/$', views.TodayAttendedMemberListView.as_view(), name='today_attended_list'),
+    
+    # Example Using Ajax
+    url(r'^home/$', views.home, name='home'),
+    url(r'^home/create_post/$', views.create_post, name='create_post'),
 ]

@@ -11,8 +11,10 @@ class DefaultRouter(object):
         """
         if model._meta.app_label == 'fromleaf':
             return 'default'
-        elif model._meta.app_label == 'fromleaf_playing.darly':
+        elif model._meta.app_label == 'darly':
             return 'darly'
+        elif model._meta.app_label == 'ourhockey':
+            return 'ourhockey'
         return None
 
     def db_for_write(self, model, **hints):
@@ -23,14 +25,8 @@ class DefaultRouter(object):
             return 'default'
         elif model._meta.app_label == 'darly':
             return 'darly'
-        return None
-
-    def allow_relation(self, obj1, obj2, **hints):
-        """
-        Allow relations if a model in the fromleaf app is involved.
-        """
-        if obj1._meta.app_label == 'fromleaf' or obj2._meta.app_label == 'fromleaf':
-           return True
+        elif model._meta.app_label == 'ourhockey':
+            return 'ourhockey'
         return None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
@@ -42,4 +38,6 @@ class DefaultRouter(object):
             return db == 'default'
         elif app_label == 'darly':
             return 'darly'
+        elif app_label == 'ourhockey':
+            return 'ourhockey'
         return None

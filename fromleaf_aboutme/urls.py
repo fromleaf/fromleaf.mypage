@@ -20,5 +20,5 @@ from django.conf.urls import patterns, url
 from fromleaf_aboutme import views
 
 urlpatterns = [
-    url(r'^$', views.AboutMeView.as_view(), name='aboutme_page'),
+    url(r'^$', views.AboutMeView.as_view(), name='aboutme_main'),
 ]

@@ -1,22 +1,40 @@
 from django.contrib import admin
 
-from fromleaf_playing.ourhockey.models.Player import Player, Person, Member
+from fromleaf_playing.ourhockey.models.Member import Player, Person, Member, Attendance
+from fromleaf_playing.ourhockey.models.Post import Post
+from fromleaf_playing.ourhockey.models.GameDay import GameDay
 
 class PeronsInline(admin.TabularInline):
     model = Person
-    verbose_name_plural = 'Input Person' 
+    verbose_name_plural = 'Input Person Information' 
     extra = 1
     max_num = extra
     
-class MemberInline(admin.TabularInline): 
-    model = Member
-    verbose_name_plural = 'Input Member' 
+class PlayerInline(admin.TabularInline): 
+    model = Player
+    verbose_name_plural = 'Input Player Information' 
     extra = 1
     max_num = extra  
             
-class PlayerAdmin(admin.ModelAdmin):
-    using = 'ourhockey.db.sqlite3'
-    list_display = ['id', 'back_number', 'position', 'created_at']
-    inlines = [PeronsInline, MemberInline]
+class MemberAdmin(admin.ModelAdmin):
+    using = 'ourhockey'
+    list_display = ['id', 'level', 'duty']
+    inlines = [PeronsInline, PlayerInline]
+    
+class AttendanceAdmin(admin.ModelAdmin):
+    using = 'ourhockey'
+    list_display = ['get_member_id', 'attended', 'attended_date']
+    
+    def get_member_id(self, obj):
+        return obj.member.id
 
-admin.site.register(Player, PlayerAdmin)
+class GameDayAdmin(admin.ModelAdmin):
+    using = 'ourhockey'
+    list_display = ['game_day', 'game_type']
+    
+
+admin.site.register(Member, MemberAdmin)
+admin.site.register(Attendance, AttendanceAdmin)
+admin.site.register(GameDay, GameDayAdmin)
+
+admin.site.register(Post)
