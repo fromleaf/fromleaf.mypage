@@ -1,3 +1,4 @@
+ajax==3.0.0
 alabaster==0.7.7
 appdirs==1.4.0
 args==0.1.0
@@ -9,7 +10,9 @@ construct==2.5.2
 coverage==4.0.3
 cycler==0.10.0
 ddt==1.0.1
+decorator==4.0.10
 Django==1.9.6
+django-appconf==1.0.2
 django-mysql==1.0.7
 djangoajax==2.3.6
 docutils==0.12
@@ -74,4 +77,3 @@ Unidecode==0.4.19
 unittest2==1.1.0
 zmq==0.0.0
 zope.interface==4.1.3
-

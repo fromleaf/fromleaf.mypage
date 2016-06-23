@@ -18,7 +18,6 @@ class DarlyPhoto(models.Model):
         super(DarlyPhoto, self).__init__(*args, **kwargs)
     
     photo_name = models.CharField(max_length=200)
-    #photo = models.ImageField(upload_to=get_upload_to)
     photo = models.ImageField(upload_to=get_upload_to)
     comment = models.CharField(max_length=200)
     created_at = models.DateTimeField(auto_now_add=True)

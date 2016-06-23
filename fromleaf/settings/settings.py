@@ -52,7 +52,6 @@ INSTALLED_APPS = [
 
 	# My Apps
 	'fromleaf_common',
-
     'fromleaf_opening',
     'fromleaf_aboutme',
     'fromleaf_myskill',
@@ -62,7 +61,6 @@ INSTALLED_APPS = [
     'fromleaf_playing.ourhockey',
     'fromleaf_contactme',
 ]
-    
 
 if APP_IS_ON is 'AWS':
 	INSTALLED_APPS += [
@@ -72,7 +70,7 @@ if APP_IS_ON is 'AWS':
 
 
 MIDDLEWARE_CLASSES = [
-    'django.middleware.security.SecurityMiddleware',
+	'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -119,12 +117,12 @@ DATABASES = {
         'NAME': join(DATABASE_DIR, 'darly.db.sqlite3'),
     },
     'ourhockey': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ourhockey_schema',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+		'ENGINE': 'django.db.backends.mysql',
+		'HOST': '127.0.0.1',
+		'PORT': '3306',
+		'OPTIONS': {
+			'read_default_file': '/etc/my.cnf',
+		},
     }
 }
 DATABASE_ROUTERS = ['fromleaf_common.db_router.DefaultRouter']
@@ -167,7 +165,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 if DEBUG:
-	STATIC_ROOT = STATIC_URL
+	STATIC_ROOT = '/var/www/fromleaf.mypage/static/'
 	STATICFILES_DIRS = [
 		# if you want to set other STATICFILE_DIRS, you have to set here.
 		# However, you have to set the other STATIC_ROOR path
@@ -177,11 +175,10 @@ if DEBUG:
 		os.path.join(BASE_DIR, 'fromleaf_playing/ourhockey/static') 
 	]
 else:
-	STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+	STATIC_ROOT = '/static/'
+	
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 USER_EMAIL = 'fromleaf@gmail.com'
 EMAIL_HOST = 'smtp.gmail.com'

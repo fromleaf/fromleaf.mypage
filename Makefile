@@ -27,10 +27,8 @@ migrateall:
 migrateothers:
 	@echo "Remove others database file"
 	rm -f database/darly.db.sqlite3
-	rm -f database/ourhockey.db.sqlite3
 	@echo manage migrate all database
 	python3 manage.py migrate --database=darly
-	python3 manage.py migrate --database=ourhockey
 
 insertuser:
 	@echo "if you want to insert user data to database, you have to execute superclean"
