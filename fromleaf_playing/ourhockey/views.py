@@ -64,9 +64,9 @@ class GameScheduleListView(FormMixin, PlayingCommonListView):
             post_gametype = request.POST.get('post_gametype')
             response_data = {}
             
-            gameday = GameDay(game_day=post_gameday, game_type=post_gametype)
+            gameday = GameDay(game_day=post_gameday, game_type=post_gametype)          
             gameday.save()
-            
+                
             response_data['result'] = 'Create post successful!'
             response_data['game_day'] = gameday.game_day
             response_data['game_type'] = gameday.game_type

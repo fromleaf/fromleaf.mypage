@@ -1,3 +1,7 @@
+"""
+description: 페이지 사용자 정보 및 글 정보를 입력.
+"""
+
 from fromleaf_common.tests import UserTestCase
 from fromleaf_opening.tests import OpeningPageTestCase
 from fromleaf_aboutme.tests import AboutMePageTestCase
@@ -6,6 +10,7 @@ from fromleaf_career.tests import CareerPageTestCase
 from fromleaf_playing.tests import PlayingPageTestCase
 from fromleaf_contactme.tests import ContactMePageTestCase
 
+# CHECK: 이게 테스트는 아니지 않는가?
 
 # Test User 
 test_user = UserTestCase()

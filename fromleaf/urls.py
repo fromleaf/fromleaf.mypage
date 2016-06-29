@@ -30,7 +30,7 @@ urlpatterns = [
 ]
 
 
-# TODO: 개발용인데, STATIC 경로가 있어야 하나? Azure에서 없으면 못읽으려나??
+# CHECK: 개발용인데, STATIC 경로가 있어야 하나? Azure에서 없으면 못읽으려나??
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

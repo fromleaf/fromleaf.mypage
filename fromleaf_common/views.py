@@ -1,3 +1,8 @@
+"""
+    description: Django에서 기본적으로 제공하는 View Class를 상속받아 
+                공통으로 필요한 기능을 구현
+"""
+
 import logging
 
 from django.conf import settings

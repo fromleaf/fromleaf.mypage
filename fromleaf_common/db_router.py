@@ -1,3 +1,7 @@
+"""
+    description: 각 App마다 DB를 나누기 위함.
+"""
+
 from django.conf import settings
 
 class DefaultRouter(object):
@@ -13,8 +17,6 @@ class DefaultRouter(object):
             return 'default'
         elif model._meta.app_label == 'darly':
             return 'darly'
-        elif model._meta.app_label == 'ourhockey':
-            return 'ourhockey'
         return None
 
     def db_for_write(self, model, **hints):
@@ -25,8 +27,6 @@ class DefaultRouter(object):
             return 'default'
         elif model._meta.app_label == 'darly':
             return 'darly'
-        elif model._meta.app_label == 'ourhockey':
-            return 'ourhockey'
         return None
 
     def allow_migrate(self, db, app_label, model_name=None, **hints):
@@ -38,6 +38,4 @@ class DefaultRouter(object):
             return db == 'default'
         elif app_label == 'darly':
             return 'darly'
-        elif app_label == 'ourhockey':
-            return 'ourhockey'
         return None

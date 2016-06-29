@@ -65,7 +65,7 @@ INSTALLED_APPS = [
 if APP_IS_ON is 'AWS':
 	INSTALLED_APPS += [
 		# Third party
-		'storages',
+		'storages',	# for AWS S3 Service
 	]
 
 
@@ -125,7 +125,10 @@ DATABASES = {
 		},
     }
 }
-DATABASE_ROUTERS = ['fromleaf_common.db_router.DefaultRouter']
+DATABASE_ROUTERS = [
+	'fromleaf_common.db_router.DefaultRouter', 
+	'fromleaf_playing.ourhockey.db_router.OurhockeyRouter',
+]
 
 
 # Password validation
@@ -165,6 +168,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 if DEBUG:
+	# 초기 환경 설정하는 경우 아래 폴더를 만들어서 사용할 수 있는 권한을 주어야 한다.
 	STATIC_ROOT = '/var/www/fromleaf.mypage/static/'
 	STATICFILES_DIRS = [
 		# if you want to set other STATICFILE_DIRS, you have to set here.
