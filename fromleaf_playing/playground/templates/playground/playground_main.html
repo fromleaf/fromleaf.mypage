@@ -1,0 +1,25 @@
+{% extends "fromleaf_playing/playing_base.html" %}
+
+<head>
+    <title>{% block title %}Playing Page{% endblock title %}</title>
+</head>
+
+{% block blog-main %}
+
+<div class="blog-post">
+<p>Playgound Main Page</p>
+
+{% url 'playing:playground:main' as playground_main_url %}
+{% if playground_main_url %}
+    {% for menu in playground_menu_list %}
+        {% if menu == 'main' %}
+        <li><a href="{{ playground_main_url }}">{{ menu|title }}</a></li>
+        {% else %}
+        <li><a href="{{ playground_main_url }}{{ menu }}">{{ menu|title }}</a></li>
+        {% endif %}
+    {% endfor %}
+{% endif %}      
+    
+</div><!-- /.blog-post -->
+
+{% endblock blog-main %}

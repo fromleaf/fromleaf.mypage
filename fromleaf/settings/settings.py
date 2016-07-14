@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'fromleaf_playing',
     'fromleaf_playing.darly',
     'fromleaf_playing.ourhockey',
+    'fromleaf_playing.playground',
     'fromleaf_contactme',
 ]
 
@@ -116,6 +117,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': join(DATABASE_DIR, 'darly.db.sqlite3'),
     },
+	'playground': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': join(DATABASE_DIR, 'playing.db.sqlite3'),
+    },
     'ourhockey': {
 		'ENGINE': 'django.db.backends.mysql',
 		'HOST': '127.0.0.1',
@@ -126,8 +131,9 @@ DATABASES = {
     }
 }
 DATABASE_ROUTERS = [
-	'fromleaf_common.db_router.DefaultRouter', 
-	'fromleaf_playing.ourhockey.db_router.OurhockeyRouter',
+	'fromleaf_common.db_router.DefaultRouter',
+	# This ourhockey db is using on MySQL. so db_router code is divided.
+	'fromleaf_playing.ourhockey.db_router.OurhockeyRouter', 
 ]
 
 

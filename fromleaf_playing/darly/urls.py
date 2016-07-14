@@ -19,5 +19,6 @@ from fromleaf_playing.darly import views
 
 
 urlpatterns = [
-    url(r'^main/$', views.DarlyView.as_view(), name='main'),
+    url(r'^$', views.DarlyMainView.as_view(), name='main'),
+    url(r'^photo_album/$', views.DarlyPhotoView.as_view(), name='photo_album'),
 ]

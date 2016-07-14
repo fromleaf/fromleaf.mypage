@@ -5,6 +5,7 @@
 </head>
 
 {% block blog-main %}
+<p>Darly Photo Page</p>
 {% for darly_photo in darly_photo_list %}
 	<img src="{{ darly_photo.photo.url }}" alt="darly_photo" class="img-thumbnail">
 {% empty %}

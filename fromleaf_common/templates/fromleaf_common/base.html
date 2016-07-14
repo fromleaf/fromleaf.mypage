@@ -39,13 +39,15 @@
 	<div class="main_menu_bar">
 		<nav>
 		<ul class="nav nav-justified">
-			<li class="active"><a href="/">Home</a></li>
-	          	<li><a href="/aboutme">About Me</a></li>
-	          	<li><a href="/myskill">Skill</a></li>
-	          	<li><a href="/career">Career</a></li>
-	          	<li><a href="/playing">Playing</a></li>
-	          	<li><a href="/contactme">Contact Me</a></li>
-	          	<li><a href="/admin" target="_blank">Admin</a></li>       
+			<li class="active"><a href="{% url 'opening:main' %}">Home</a></li>
+			    <li><a href="{% url 'aboutme:main' %}">About Me</a></li>
+                <li><a href="{% url 'myskill:main' %}">Skill</a></li>
+                <li><a href="{% url 'career:main' %}">Career</a></li>
+                <li><a href="{% url 'playing:main' %}">Playing</a></li>
+                <li><a href="{% url 'contactme:main' %}">Contact Me</a></li>
+                {% if request.user.is_superuser %}
+                <li><a href="/admin" target="_blank">Admin</a></li>     
+                {% endif %}    
 		</ul>
 		</nav>
 	</div>

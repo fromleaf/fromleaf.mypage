@@ -1,0 +1,23 @@
+{% extends "fromleaf_playing/playing_base.html" %}
+
+<head>
+    <title>{% block title %}OurHockey Page{% endblock title %}</title>
+</head>
+
+{% block blog-main %}
+
+<div class="blog-post">
+<p>OurHockey Main Page</p>
+{% url 'playing:ourhockey:main' as ourhockey_main_url %}
+{% if ourhockey_main_url %}
+    {% for menu in ourhockey_menu_list %}
+        {% if menu == 'main' %}
+        <li><a href="{{ ourhockey_main_url }}">{{ menu|title }}</a></li>
+        {% else %}
+        <li><a href="{{ ourhockey_main_url }}{{ menu }}">{{ menu|title }}</a></li>
+        {% endif %}
+    {% endfor %}
+{% endif %}		
+</div><!-- /.blog-post -->
+
+{% endblock blog-main %}

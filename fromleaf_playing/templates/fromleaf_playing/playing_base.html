@@ -23,8 +23,7 @@
 {% block sub-nav %}
 <div class="nav-playing">
 	<ul class="nav nav-pills">
-		<li role=presentation class=active>
-		<a href="{% url 'playing:playing_main' %}">Playing Home</a></li>
+		<li role=presentation class=active><a href="{% url 'playing:main' %}">Playing Home</a></li>
 		{% for playing_menu in playing_menu_list %}
 		<li role=presentation class=dropdown>
 		  <a class=dropdown-toggle data-toggle=dropdown href=# 
@@ -32,12 +31,38 @@
 		      aria-expanded=false> {{ playing_menu }} <span class=caret></span></a>
 		      <ul class=dropdown-menu>
 		      {% if playing_menu == "darly" %}
-			     <li><a href="{% url 'playing:darly:main' %}">Main</a></li>
+		          {% url 'playing:darly:main' as darly_main_url %}
+		          {% if darly_main_url %}
+		              {% for menu in darly_menu_list %}
+		                  {% if menu == 'main' %}
+		                  <li><a href="{{ darly_main_url }}">{{ menu|title }}</a></li>
+		                  {% else %}
+		                  <li><a href="{{ darly_main_url }}{{ menu }}">{{ menu|title }}</a></li>
+		                  {% endif %}
+		              {% endfor %}
+		          {% endif %}
 		      {% elif playing_menu == "ourhockey" %}
-		         <li><a href="{% url 'playing:ourhockey:member_list' %}">Member List</a></li>
-		         <li><a href="{% url 'playing:ourhockey:game_schedule' %}">Game Schedule</a></li>
-		         <li><a href="{% url 'playing:ourhockey:select_today_attend' %}">Select Today Attend</a></li>
-		         <li><a href="{% url 'playing:ourhockey:today_attended_list' %}">Today Attended List</a></li>
+		          {% url 'playing:ourhockey:main' as ourhockey_main_url %}
+                  {% if ourhockey_main_url %}
+                      {% for menu in ourhockey_menu_list %}
+                          {% if menu == 'main' %}
+                          <li><a href="{{ ourhockey_main_url }}">{{ menu|title }}</a></li>
+                          {% else %}
+                          <li><a href="{{ ourhockey_main_url }}{{ menu }}">{{ menu|title }}</a></li>
+                          {% endif %}
+                      {% endfor %}
+                  {% endif %}
+		      {% elif playing_menu == "playground" %}
+		          {% url 'playing:playground:main' as playground_main_url %}
+                  {% if playground_main_url %}
+                      {% for menu in playground_menu_list %}
+                          {% if menu == 'main' %}
+                          <li><a href="{{ playground_main_url }}">{{ menu|title }}</a></li>
+                          {% else %}
+                          <li><a href="{{ playground_main_url }}{{ menu }}">{{ menu|title }}</a></li>
+                          {% endif %}
+                      {% endfor %}
+                  {% endif %}
 		      {% endif %}
 			  </ul>
 		</li>

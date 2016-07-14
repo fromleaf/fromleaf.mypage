@@ -1,0 +1,20 @@
+{% extends "fromleaf_playing/playing_base.html" %}
+
+<head>
+    <title>{% block title %}Darly Page{% endblock title %}</title>
+</head>
+
+{% block blog-main %}
+<p>Darly Main Page</p>
+{% url 'playing:darly:main' as darly_main_url %}
+{% if darly_main_url %}
+    {% for menu in darly_menu_list %}
+        {% if menu == 'main' %}
+        <li><a href="{{ darly_main_url }}">{{ menu|title }}</a></li>
+        {% else %}
+        <li><a href="{{ darly_main_url }}{{ menu }}">{{ menu|title }}</a></li>
+        {% endif %}
+    {% endfor %}
+{% endif %} 
+
+{% endblock blog-main %}
